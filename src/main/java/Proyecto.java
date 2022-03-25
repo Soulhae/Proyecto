@@ -1,4 +1,5 @@
 import java.io.*;
+//import java.util.*;
 
 public class Proyecto {
     public static void main (String arg[]) throws IOException{
@@ -22,14 +23,23 @@ public class Proyecto {
         Asignatura asignatura = new Asignatura();
         Asignatura asignatura2 = new Asignatura("Matemáticas","MAT");
         
+        RecursoDigital recDigital = new RecursoDigital();
+        RecursoDigital recDigital2 = new RecursoDigital("PDF", "Clase 1");
+        
         System.out.println(alumno.getNombre()+" | "+alumno2.getNombre());
         System.out.println(alumno.getRut()+" | "+alumno2.getRut());
         
         /*curso.setAlumno(alumno);
         curso.setAlumno(alumno2);
-        System.out.println(curso.getAlumno());*/
+        ArrayList<Alumno> aux = curso.getAlumno();          aiuda con ArrayList
+        for(int i=0; i<aux.size(); i++){
+            System.out.println(aux.get(i));
+        }*/
         
         System.out.println(asignatura.getNombre()+" | "+asignatura2.getNombre());
         System.out.println(asignatura.getSigla()+" | "+asignatura2.getSigla());
+        
+        System.out.println(recDigital.getTipo()+" | "+recDigital2.getTipo());
+        System.out.println(recDigital.getNombre()+" | "+recDigital2.getNombre());
     }
 }

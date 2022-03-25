@@ -10,17 +10,17 @@ public class Curso {
     }
 
     /*public ArrayList<Alumno> getAlumno() {
-        return alumno;                          como se ocupa getter aquí?
-    }                                           recorrer la lista?*/
-
+        return alumno;
+    }*/
+    
     public void setAlumno(Alumno alumno) {
         this.alumno.add(alumno);
     }
 
     /*public ArrayList<Asignatura> getAsignatura() {
-        return asignatura;                      como se ocupa getter aquí?
-    }                                           recorrer la lista?*/
-
+        return asignatura;
+    }*/
+    
     public void setAsignatura(Asignatura asignatura) {
         this.asignatura.add(asignatura);
     }
