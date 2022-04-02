@@ -29,6 +29,7 @@ public class Asignatura {
     }
     
     public void recorrerListaRecDigital(){
+        System.out.println("\n- Lista de Recursos Digitales -");
         int i;
         if(listRecDigital.isEmpty()){
             System.out.println("Esta asignatura no contiene recursos digitales");
@@ -37,6 +38,7 @@ public class Asignatura {
                 System.out.println(listRecDigital.get(i).getTipo()+" | "+listRecDigital.get(i).getNombre());
             }
         }
+        System.out.println("\n");
         
     }
     

@@ -18,10 +18,12 @@ public class Curso {
     }
         
     public void recorrerListaAlumno(){
+        System.out.println("\n- Lista de Alumnos -");
         int i;
         for(i=0; i<alumno.size(); i++){
             System.out.println(alumno.get(i).getNombre()+" | "+alumno.get(i).getRut());
         }
+        System.out.println("\n");
     }
     
     public void recorrerListaAlumno(int x){
@@ -32,9 +34,11 @@ public class Curso {
     }
     
     public void recorrerListaAsignatura(){
+        System.out.println("\n- Lista de Asignaturas -");
         int i;
         for(i=0; i<asignatura.size(); i++){
             System.out.println(asignatura.get(i).getNombre()+" | "+asignatura.get(i).getSigla());
         }
+        System.out.println("\n");
     }
 }
