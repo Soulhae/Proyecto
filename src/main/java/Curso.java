@@ -1,4 +1,5 @@
 import java.util.*;
+import java.io.*;
 
 public class Curso {
     private ArrayList<Alumno> alumno;
@@ -9,8 +10,8 @@ public class Curso {
         this.asignatura = new ArrayList<>();
     }
 
-    public void agregarAlumno(Alumno alumno) {
-        this.alumno.add(alumno);
+    public void agregarAlumno(Alumno alumno1) {
+        this.alumno.add(alumno1);
     }
 
     public void agregarAsignatura(Asignatura asignatura) {
@@ -41,4 +42,15 @@ public class Curso {
         }
         System.out.println("\n");
     }
+
+    public Asignatura buscarAsignatura(String sigla) {
+        for(int i = 0 ; i < asignatura.size() ; i++){
+            if ( asignatura.get(i).getSigla().equals(sigla) ){
+                return asignatura.get(i);
+            }
+        }
+        return null;
+
+    }
+
 }
