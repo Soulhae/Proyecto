@@ -28,10 +28,12 @@ public class Curso {
     }
     
     public void recorrerListaAlumno(int x){
+        System.out.println("\n- Lista de Alumnos -");
         int i;
         for(i=0; i<alumno.size(); i++){
             System.out.println(alumno.get(i).getNombre());
         }
+        System.out.println("\n");
     }
     
     public void recorrerListaAsignatura(){

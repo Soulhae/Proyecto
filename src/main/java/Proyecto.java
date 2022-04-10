@@ -85,7 +85,17 @@ public class Proyecto {
                     case 7:
                         break;
                     case 8:
-                        curso.recorrerListaAlumno();
+                        System.out.println("1.- Mostrar nombre y rut de alumnos ");
+                        System.out.println("2.- Mostrar solo nombre de alumnos ");
+                        int x = Integer.parseInt(lector.readLine());
+                        while (x > 2){
+                            System.out.println("Vuelva a ingresar una opcion válida.");
+                            System.out.println("1.- Mostrar nombre y rut de alumnos ");
+                            System.out.println("2.- Mostrar nombre de alumnos ");
+                            x = Integer.parseInt(lector.readLine());
+                        }
+                        if (x == 1) curso.recorrerListaAlumno();
+                        if (x == 2) curso.recorrerListaAlumno(x);
                         break;
                     case 9:
                         curso.recorrerListaAsignatura();
