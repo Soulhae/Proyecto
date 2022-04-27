@@ -27,19 +27,38 @@ public class Asignatura {
     public void agregarRecDigital(String clave, RecursoDigital recDigital){
         this.mapRecDigital.put(clave,recDigital);
     }
+
+    public void eliminarRecDigital(String nombre){
+        /* eliminar de la lista */
+        int cont = 0;
+        for(int i = 0 ; i < listRecDigital.size() ; i++){
+            if(listRecDigital.get(i).getNombre().equals(nombre)){
+                this.listRecDigital.remove(i);
+                cont ++;
+                break;
+            }
+        }
+        /* eliminar del mapa */
+        if (cont == 1){
+            RecursoDigital aux = buscarMapaRecDigital(nombre);
+            listRecDigital.remove(aux);
+            cont ++;
+        }
+        if (cont == 2) System.out.println("\nRecurso digital eliminado con exito.\n");
+        else System.out.println("\nEl Recurso digital ingresado no existe.\n");
+    }
     
     public void recorrerListaRecDigital(){
-        System.out.println("\n- Lista de Recursos Digitales -");
-        int i;
         if(listRecDigital.isEmpty()){
-            System.out.println("Esta asignatura no contiene recursos digitales");
+            System.out.println("\nEsta asignatura no tiene recursos digitales registrados.");
         }else{
+            System.out.println("\n- Lista de Recursos Digitales -");
+            int i;
             for(i=0; i<listRecDigital.size(); i++){
                 System.out.println(listRecDigital.get(i).getTipo()+" | "+listRecDigital.get(i).getNombre());
             }
         }
         System.out.println("\n");
-        
     }
     
     public RecursoDigital buscarMapaRecDigital(String clave){

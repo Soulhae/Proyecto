@@ -17,8 +17,34 @@ public class Curso {
     public void agregarAsignatura(Asignatura asignatura) {
         this.asignatura.add(asignatura);
     }
+
+    public void eliminarAlumno(String rut){
+        for(int i=0; i < alumno.size() ; i++){
+            if (alumno.get(i).getRut().equals(rut)){
+                this.alumno.remove(i);
+                System.out.println("\nAlumno eliminado con exito.\n");
+                return;
+            }
+        }
+        System.out.println("\nEl alumno ingresado no existe.\n");
+    }
+
+    public void eliminarAsignatura(String sigla){
+        for(int i = 0 ; i < asignatura.size() ; i++){
+            if(asignatura.get(i).getSigla().equals(sigla)){
+                this.asignatura.remove(i);
+                System.out.println("\nAsignatura eliminada con exito.\n");
+                return;
+            }
+        }
+        System.out.println("\nLa asignatura ingresada no existe.\n");
+    }
         
     public void recorrerListaAlumno(){
+        if (alumno.size() == 0){
+            System.out.println("\nNo hay alumnos registrados.\n");
+            return;
+        }
         System.out.println("\n- Lista de Alumnos -");
         int i;
         for(i=0; i<alumno.size(); i++){
@@ -28,6 +54,10 @@ public class Curso {
     }
     
     public void recorrerListaAlumno(int x){
+        if (alumno.size() == 0){
+            System.out.println("\nNo hay alumnos registrados.\n");
+            return;
+        }
         System.out.println("\n- Lista de Alumnos -");
         int i;
         for(i=0; i<alumno.size(); i++){
@@ -37,6 +67,10 @@ public class Curso {
     }
     
     public void recorrerListaAsignatura(){
+        if (asignatura.size() == 0){
+            System.out.println("\nNo hay asignaturas registradas.\n");
+            return;
+        }
         System.out.println("\n- Lista de Asignaturas -");
         int i;
         for(i=0; i<asignatura.size(); i++){
