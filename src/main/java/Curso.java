@@ -86,7 +86,30 @@ public class Curso {
             }
         }
         return null;
+    }
 
+    public void modificarAlumno(String rut, String nuevoNombre, String nuevoRut) throws IOException {
+        for(int i = 0 ; i < alumno.size() ; i++){
+            if ( alumno.get(i).getRut().equals(rut) ){
+                alumno.get(i).setNombre(nuevoNombre);
+                alumno.get(i).setRut(nuevoRut);
+                System.out.println("\nAlumno modificado correctamente.\n");
+                return;
+            }
+        }
+        System.out.println("\nEl alumno ingresado no existe.\n");
+    }
+
+    public void modificarAsignatura(String sigla, String nuevoNombreAsig, String nuevaSigla){
+        for(int i = 0 ; i < asignatura.size() ; i++){
+            if ( asignatura.get(i).getSigla().equals(sigla) ){
+                asignatura.get(i).setNombre(nuevoNombreAsig);
+                asignatura.get(i).setSigla(nuevaSigla);
+                System.out.println("\nAsignatura modificada correctamente.\n");
+                return;
+            }
+        }
+        System.out.println("\nLa asignatura ingresada no existe.\n");
     }
 
 }
