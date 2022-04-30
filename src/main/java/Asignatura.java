@@ -1,4 +1,5 @@
 import java.util.*;
+import java.io.*;
 
 public class Asignatura {
     private String nombre;
@@ -19,13 +20,22 @@ public class Asignatura {
         this.listRecDigital = new ArrayList<>();
         this.mapRecDigital = new HashMap<>();
     }
-
+    
     public void agregarRecDigital(RecursoDigital recDigital) {
         this.listRecDigital.add(recDigital);
     }
     
     public void agregarRecDigital(String clave, RecursoDigital recDigital){
         this.mapRecDigital.put(clave,recDigital);
+    }
+    
+    public void escribirRecDigital (File archivo, FileWriter fw, BufferedWriter bw, PrintWriter wr) {
+        int i;
+        for(i=0; i<listRecDigital.size(); i++) {
+            wr.append(listRecDigital.get(i).getTipo()+" | "+listRecDigital.get(i).getNombre()+" \n");
+        }
+        wr.append("\n");
+        
     }
 
     public void eliminarRecDigital(String nombre){

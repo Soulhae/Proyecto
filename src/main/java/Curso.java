@@ -111,5 +111,52 @@ public class Curso {
         }
         System.out.println("\nLa asignatura ingresada no existe.\n");
     }
+    
+    public void generarTXT () {
+        File archivo;
+        FileWriter fw;
+        BufferedWriter bw;
+        PrintWriter wr;
+        
+        try {
+            archivo = new File ("Resultados.txt");
+            fw = new FileWriter (archivo);
+            bw = new BufferedWriter (fw);
+            wr = new PrintWriter (bw);
+            
+            wr.write("- Lista de Alumnos -\n");
+            wr.append("\n");
+            
+            int i;
+            for(i = 0; i<alumno.size(); i++) {
+                wr.append(alumno.get(i).getNombre()+" | "+alumno.get(i).getRut()+" \n");
+            }
+            
+            wr.append("\n");
+            wr.append("- Lista de Asignaturas -\n");
+            wr.append("\n");
+            
+            for (i = 0; i<asignatura.size(); i++) {
+                wr.append(asignatura.get(i).getNombre()+" | "+asignatura.get(i).getSigla()+" \n");
+            }
+            
+            wr.append("\n");
+            wr.append("- Lista de Recursos Digitales -\n");
+            wr.append("\n");
+            
+            for (i = 0; i<asignatura.size(); i++) {
+                wr.append(asignatura.get(i).getNombre()+" \n");
+                wr.append("\n");
+                asignatura.get(i).escribirRecDigital(archivo, fw, bw, wr);
+            }
+            
+            wr.close();
+            bw.close();
+        } catch (Exception e) {
+            System.out.println("Algo ha fallado");
+        }
+        
+    }
 
 }
+ 

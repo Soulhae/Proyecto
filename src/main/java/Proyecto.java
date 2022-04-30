@@ -35,6 +35,15 @@ public class Proyecto {
 
                 switch(opcion) {
                     case 1:
+                        System.out.println("Se creara un archivo .txt con la lista de los alumnos, las asignaturas y si en estas hay recursos digitales");
+                        System.out.println("----GENERANDO ALUMNOS----");
+                        System.out.println("..........................");
+                        System.out.println("----GENERANDO ASIGNATURAS----");
+                        System.out.println("..........................");
+                        curso.generarTXT();
+                        System.out.println("----GENERANDO RECURSOS DIGITALES");
+                        System.out.println("..........................");
+                        System.out.println("Archivo generado con exito, revise la carpeta del programa para encontrarlo y poder leelo, muchas gracias");
                         break;
                     case 2:
                         Alumno alumno = new Alumno();
@@ -53,7 +62,7 @@ public class Proyecto {
                         break;
                     case 3:
                         Asignatura asignatura = new Asignatura();
-
+                        
                         System.out.println("\nIngrese asignatura: ");
                         String asig = lector.readLine();
 
