@@ -35,7 +35,6 @@ public class Asignatura {
             wr.append(listRecDigital.get(i).getTipo()+" | "+listRecDigital.get(i).getNombre()+" \n");
         }
         wr.append("\n");
-        
     }
 
     public void eliminarRecDigital(String nombre){
@@ -48,10 +47,10 @@ public class Asignatura {
                 break;
             }
         }
-        /* eliminar del mapa */
+        /* Eliminar del mapa. No lo elimina correctamente */
         if (cont == 1){
             RecursoDigital aux = buscarMapaRecDigital(nombre);
-            listRecDigital.remove(aux);
+            this.mapRecDigital.remove(nombre);
             cont ++;
         }
         if (cont == 2) System.out.println("\nRecurso digital eliminado con exito.\n");

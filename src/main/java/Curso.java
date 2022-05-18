@@ -54,16 +54,15 @@ public class Curso {
     }
     
     public void recorrerListaAlumno(int x){
-        if (alumno.size() == 0){
-            System.out.println("\nNo hay alumnos registrados.\n");
-            return;
+        if (alumno.size() != 0){
+            System.out.println("\n- Lista de Alumnos -");
+            int i;
+            for(i=0; i<alumno.size(); i++){
+                System.out.println(alumno.get(i).getNombre());
+            }
+            System.out.println("\n");
         }
-        System.out.println("\n- Lista de Alumnos -");
-        int i;
-        for(i=0; i<alumno.size(); i++){
-            System.out.println(alumno.get(i).getNombre());
-        }
-        System.out.println("\n");
+        if (alumno.size() == 0) System.out.println("\nNo hay alumnos registrados.\n");
     }
     
     public void recorrerListaAsignatura(){

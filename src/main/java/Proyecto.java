@@ -5,7 +5,11 @@ import java.util.Scanner;
 public class Proyecto {
     public static void main (String arg[]) throws IOException{
 
-        Curso curso = new Curso();
+        //Curso curso = new Curso();
+        Curso curso[] = new Curso[4];
+        for (int i = 0 ; i < 4 ; i ++){
+            curso[i] = new Curso();
+        }
 
         // menu
         Scanner sn = new Scanner(System.in);
@@ -35,7 +39,7 @@ public class Proyecto {
 
                 switch(opcion) {
                     case 1:
-                        System.out.println("Se creara un archivo .txt con la lista de los alumnos, las asignaturas y si en estas hay recursos digitales");
+                        /*System.out.println("Se creara un archivo .txt con la lista de los alumnos, las asignaturas y si en estas hay recursos digitales");
                         System.out.println("----GENERANDO ALUMNOS----");
                         System.out.println("..........................");
                         System.out.println("----GENERANDO ASIGNATURAS----");
@@ -43,12 +47,19 @@ public class Proyecto {
                         curso.generarTXT();
                         System.out.println("----GENERANDO RECURSOS DIGITALES");
                         System.out.println("..........................");
-                        System.out.println("Archivo generado con exito, revise la carpeta del programa para encontrarlo y poder leelo, muchas gracias");
+                        System.out.println("Archivo generado con exito, revise la carpeta del programa para encontrarlo y poder leelo, muchas gracias");*/
                         break;
                     case 2:
-                        Alumno alumno = new Alumno();
 
-                        System.out.println("Ingrese nombre y apellido del alumno, de la forma 'Nombre Apellido'.");
+                        System.out.println("\nIngrese el curso del alumno: ");
+                        System.out.println("1.- 1° Medio");
+                        System.out.println("2.- 2° Medio");
+                        System.out.println("3.- 3° Medio");
+                        System.out.println("4.- 4° Medio\n");
+                        int numCurso = Integer.parseInt(lector.readLine());
+                        
+                        Alumno alumno = new Alumno();
+                        System.out.println("\nIngrese nombre y apellido del alumno, de la forma 'Nombre Apellido'.");
                         String nombre = lector.readLine();
                         alumno.setNombre(nombre);
 
@@ -56,32 +67,50 @@ public class Proyecto {
                         String rut = lector.readLine();
                         alumno.setRut(rut);
 
-                        curso.agregarAlumno(alumno);
+                        numCurso --;
+                        curso[numCurso].agregarAlumno(alumno);
                         System.out.println("\nAlumno ingresado.\n");
 
                         break;
                     case 3:
-                        Asignatura asignatura = new Asignatura();
+
+                        System.out.println("\nIngrese el curso de la asignatura: ");
+                        System.out.println("1.- 1° Medio");
+                        System.out.println("2.- 2° Medio");
+                        System.out.println("3.- 3° Medio");
+                        System.out.println("4.- 4° Medio\n");
+                        numCurso = Integer.parseInt(lector.readLine());
                         
-                        System.out.println("\nIngrese asignatura: ");
+                        Asignatura asignatura = new Asignatura();
+                        System.out.println("\nIngrese nombre de la asignatura: ");
                         String asig = lector.readLine();
 
                         System.out.println("Ingrese sigla de la asignatura: ");
-                        String sigla = lector.readLine();;
+                        String sigla = lector.readLine();
 
                         asignatura.setNombre(asig);
                         asignatura.setSigla(sigla);
 
-                        curso.agregarAsignatura(asignatura);
+                        numCurso --;
+                        curso[numCurso].agregarAsignatura(asignatura);
                         System.out.println("\nAsignatura agregada.\n");
 
                         break;
                     case 4:
+
+                        System.out.println("\nIngrese el curso de la asignatura: ");
+                        System.out.println("1.- 1° Medio");
+                        System.out.println("2.- 2° Medio");
+                        System.out.println("3.- 3° Medio");
+                        System.out.println("4.- 4° Medio\n");
+                        numCurso = Integer.parseInt(lector.readLine());
+
                         RecursoDigital recDigital = new RecursoDigital();
-                        System.out.println("Ingrese la sigla de la Asignatura: ");
+                        System.out.println("\nIngrese la sigla de la Asignatura: ");
                         String siglaAsig = lector.readLine();
 
-                        while (curso.buscarAsignatura(siglaAsig) == null){
+                        numCurso --;
+                        while (curso[numCurso].buscarAsignatura(siglaAsig) == null){
                             System.out.println("Inténtelo nuevamente. Ingrese una sigla válida. ");
                             siglaAsig = lector.readLine();
                         }
@@ -95,82 +124,138 @@ public class Proyecto {
                         recDigital.setTipo(tipo);
                         recDigital.setNombre(nombreRedDigital);
 
-                        curso.buscarAsignatura(siglaAsig).agregarRecDigital(recDigital);
-                        curso.buscarAsignatura(siglaAsig).agregarRecDigital(recDigital.getNombre(), recDigital);
+                        curso[numCurso].buscarAsignatura(siglaAsig).agregarRecDigital(recDigital);
+                        curso[numCurso].buscarAsignatura(siglaAsig).agregarRecDigital(recDigital.getNombre(), recDigital);
                         System.out.println("\nRecurso Digital agregado.\n");
 
                         break;
                     case 5:
+
+                        System.out.println("\nIngrese el curso del alumno: ");
+                        System.out.println("1.- 1° Medio");
+                        System.out.println("2.- 2° Medio");
+                        System.out.println("3.- 3° Medio");
+                        System.out.println("4.- 4° Medio\n");
+                        numCurso = Integer.parseInt(lector.readLine());
+                        numCurso--;
+
                         System.out.println("Ingrese rut del alumno, de la forma '12.345.678-9'.");
                         rut = lector.readLine();
-                        curso.eliminarAlumno(rut);
+                        curso[numCurso].eliminarAlumno(rut);
+
                         break;
                     case 6:
+
+                        System.out.println("\nIngrese el curso del alumno: ");
+                        System.out.println("1.- 1° Medio");
+                        System.out.println("2.- 2° Medio");
+                        System.out.println("3.- 3° Medio");
+                        System.out.println("4.- 4° Medio\n");
+                        numCurso = Integer.parseInt(lector.readLine());
+                        numCurso--;
+
                         System.out.println("Ingrese sigla de la asignatura");
                         sigla = lector.readLine();
-                        curso.eliminarAsignatura(sigla);
+                        curso[numCurso].eliminarAsignatura(sigla);
                         break;
                     case 7:
+
+                        System.out.println("\nIngrese el curso del alumno: ");
+                        System.out.println("1.- 1° Medio");
+                        System.out.println("2.- 2° Medio");
+                        System.out.println("3.- 3° Medio");
+                        System.out.println("4.- 4° Medio\n");
+                        numCurso = Integer.parseInt(lector.readLine());
+                        numCurso--;
+
                         System.out.println("Ingrese la sigla de la Asignatura que desea ver los Recursos Digitales: ");
                         sigla = lector.readLine();
 
-                        while (curso.buscarAsignatura(sigla) == null){
+                        while (curso[numCurso].buscarAsignatura(sigla) == null){
                             System.out.println("Inténtelo nuevamente. Ingrese una sigla válida. ");
                             sigla = lector.readLine();
                         }
 
-                        Asignatura auxAsignatura = curso.buscarAsignatura(sigla);
+                        Asignatura auxAsignatura = curso[numCurso].buscarAsignatura(sigla);
                         System.out.println("Ingrese el nombre del Recurso Digital: ");
                         nombre = lector.readLine();
                         auxAsignatura.eliminarRecDigital(nombre);
 
                         break;
                     case 8:
+
+                        System.out.println("\nIngrese el curso del alumno: ");
+                        System.out.println("1.- 1° Medio");
+                        System.out.println("2.- 2° Medio");
+                        System.out.println("3.- 3° Medio");
+                        System.out.println("4.- 4° Medio\n");
+                        numCurso = Integer.parseInt(lector.readLine());
+                        numCurso--;
+
                         System.out.println("Ingrese el rut del alumno a modificar, de la forma '12.345.678-9'.");
                         rut = lector.readLine();
-
                         System.out.println("Ingrese el nuevo nombre y apellido, de la forma 'Nombre Apellido'.");
                         String nuevoNombre = lector.readLine();
-
                         System.out.println("Ingrese rut, de la forma '12.345.678-9'.");
                         String nuevoRut = lector.readLine();
 
-                        curso.modificarAlumno(rut, nuevoNombre, nuevoRut);
+                        curso[numCurso].modificarAlumno(rut, nuevoNombre, nuevoRut);
 
                         break;
                     case 9:
+
+                        System.out.println("\nIngrese el curso de la asignatura a modificar: ");
+                        System.out.println("1.- 1° Medio");
+                        System.out.println("2.- 2° Medio");
+                        System.out.println("3.- 3° Medio");
+                        System.out.println("4.- 4° Medio\n");
+                        numCurso = Integer.parseInt(lector.readLine());
+                        numCurso--;
+
                         System.out.println("Ingrese la sigla de la asignatura a modificar.");
                         sigla = lector.readLine();
-
                         System.out.println("Ingrese el nombre de la asignatura modificada.");
                         String nuevoNombreAsig = lector.readLine();
-
                         System.out.println("Ingrese la sigla.");
                         String nuevaSigla = lector.readLine();
 
-                        curso.modificarAsignatura(sigla, nuevoNombreAsig, nuevaSigla);
+                        curso[numCurso].modificarAsignatura(sigla, nuevoNombreAsig, nuevaSigla);
 
                         break;
                     case 10:
+
+                        System.out.println("\nIngrese el curso: ");
+                        System.out.println("1.- 1° Medio");
+                        System.out.println("2.- 2° Medio");
+                        System.out.println("3.- 3° Medio");
+                        System.out.println("4.- 4° Medio\n");
+                        numCurso = Integer.parseInt(lector.readLine());
+                        numCurso--;
+
                         System.out.println("Ingrese la sigla de la asignatura del recurso digital a modificar:");
                         sigla = lector.readLine();
-
                         System.out.println("Ingrese el nombre del recurso digital a modificar:");
                         String nombreRecDigital = lector.readLine();
-
                         System.out.println("Ingrese el nombre del recurso digital modificado:");
                         String nuevoNombreRedDigital = lector.readLine();
-
                         System.out.println("Ingrese el tipo:");
                         String nuevoTipo = lector.readLine();
 
-                        auxAsignatura = curso.buscarAsignatura(sigla);
-
+                        auxAsignatura = curso[numCurso].buscarAsignatura(sigla);
                         auxAsignatura.modificarRecDigital(nombreRecDigital, nuevoNombreRedDigital, nuevoTipo);
 
                         break;
                     case 11:
-                        System.out.println("\n1.- Mostrar nombre y rut de alumnos.");
+                        
+                        System.out.println("\nIngrese el curso: ");
+                        System.out.println("1.- 1° Medio");
+                        System.out.println("2.- 2° Medio");
+                        System.out.println("3.- 3° Medio");
+                        System.out.println("4.- 4° Medio\n");
+                        numCurso = Integer.parseInt(lector.readLine());
+
+                        System.out.println("\nIngrese opcion para mostrar la lista de alumnos: ");
+                        System.out.println("1.- Mostrar nombre y rut de alumnos.");
                         System.out.println("2.- Mostrar solo nombre de alumnos.\n");
                         System.out.println("Ingrese opcion:");
 
@@ -183,39 +268,75 @@ public class Proyecto {
                             x = Integer.parseInt(lector.readLine());
                         }
 
-                        if (x == 1) curso.recorrerListaAlumno();
-                        if (x == 2) curso.recorrerListaAlumno(x);
+                        numCurso --;
+                        if (x == 1) curso[numCurso].recorrerListaAlumno();
+                        if (x == 2) curso[numCurso].recorrerListaAlumno(x);
 
                         break;
                     case 12:
-                        curso.recorrerListaAsignatura();
+
+                        System.out.println("\nIngrese el curso: ");
+                        System.out.println("1.- 1° Medio");
+                        System.out.println("2.- 2° Medio");
+                        System.out.println("3.- 3° Medio");
+                        System.out.println("4.- 4° Medio\n");
+                        numCurso = Integer.parseInt(lector.readLine());
+
+                        numCurso --;
+                        curso[numCurso].recorrerListaAsignatura();
+
                         break;
                     case 13:
-                        System.out.println("Ingrese la sigla de la Asignatura que desea ver los Recursos Digitales: ");
+                    
+                        System.out.println("\nIngrese el curso: ");
+                        System.out.println("1.- 1° Medio");
+                        System.out.println("2.- 2° Medio");
+                        System.out.println("3.- 3° Medio");
+                        System.out.println("4.- 4° Medio\n");
+                        numCurso = Integer.parseInt(lector.readLine());
+                        numCurso --;
+
+                        System.out.println("\nIngrese la sigla de la Asignatura que desea ver los Recursos Digitales: ");
                         String sigla1 = lector.readLine();
-                        while (curso.buscarAsignatura(sigla1) == null){
+                        while (curso[numCurso].buscarAsignatura(sigla1) == null){
                             System.out.println("Inténtelo nuevamente. Ingrese una sigla válida. ");
                             sigla1 = lector.readLine();
                         }
-                        curso.buscarAsignatura(sigla1).recorrerListaRecDigital();
+
+                        curso[numCurso].buscarAsignatura(sigla1).recorrerListaRecDigital();
+
                         break;
                     case 14:
+
+                        System.out.println("\nIngrese el curso: ");
+                        System.out.println("1.- 1° Medio");
+                        System.out.println("2.- 2° Medio");
+                        System.out.println("3.- 3° Medio");
+                        System.out.println("4.- 4° Medio\n");
+                        numCurso = Integer.parseInt(lector.readLine());
+                        numCurso --;
+
                         System.out.println("Ingrese la sigla de la Asignatura que buscar el Recursos Digital: ");
                         String sigla2 = lector.readLine();
 
-                        while (curso.buscarAsignatura(sigla2) == null){
+                        while (curso[numCurso].buscarAsignatura(sigla2) == null){
                             System.out.println("Inténtelo nuevamente. Ingrese una sigla válida. ");
                             sigla2 = lector.readLine();
                         }
 
-                        auxAsignatura = curso.buscarAsignatura(sigla2);
+                        auxAsignatura = curso[numCurso].buscarAsignatura(sigla2);
                         System.out.println("Ingrese el nombre del Recurso Digital: ");
 
                         String buscarRecDigital = lector.readLine();
                         System.out.println("\n- Recurso Digital -");
 
-                        System.out.println(auxAsignatura.buscarMapaRecDigital(buscarRecDigital).getTipo()+" | "+auxAsignatura.buscarMapaRecDigital(buscarRecDigital).getNombre()+ "\n");
-
+                        if (auxAsignatura.buscarMapaRecDigital(buscarRecDigital) == null){
+                            System.out.println("\nEl Recurso digital buscado no existe.\n");
+                        }
+                        else{
+                            System.out.println(auxAsignatura.buscarMapaRecDigital(buscarRecDigital).getTipo()+" | "+auxAsignatura.buscarMapaRecDigital(buscarRecDigital).getNombre()+ "\n");
+                        }
+   
                         break;
                     case 15:
                         salir = true;
