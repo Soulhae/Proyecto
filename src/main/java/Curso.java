@@ -2,7 +2,7 @@ import java.util.*;
 import java.io.*;
 
 public class Curso {
-    private ArrayList<Alumno> alumno;
+    private ArrayList<Persona> alumno;
     private ArrayList<Asignatura> asignatura;
     
     public Curso(){
@@ -10,7 +10,7 @@ public class Curso {
         this.asignatura = new ArrayList<>();
     }
 
-    public void agregarAlumno(Alumno alumno1) {
+    public void agregarAlumno(Persona alumno1) {
         this.alumno.add(alumno1);
     }
 

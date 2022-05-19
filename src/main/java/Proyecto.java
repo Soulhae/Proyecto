@@ -58,7 +58,7 @@ public class Proyecto {
                         System.out.println("4.- 4° Medio\n");
                         int numCurso = Integer.parseInt(lector.readLine());
                         
-                        Alumno alumno = new Alumno();
+                        Persona alumno = new Alumno();
                         System.out.println("\nIngrese nombre y apellido del alumno, de la forma 'Nombre Apellido'.");
                         String nombre = lector.readLine();
                         alumno.setNombre(nombre);
