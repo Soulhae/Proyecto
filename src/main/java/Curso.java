@@ -1,7 +1,7 @@
 import java.util.*;
 import java.io.*;
 
-public class Curso {
+public class Curso implements Imprimible{
     private ArrayList<Persona> alumno;
     private ArrayList<Asignatura> asignatura;
     
@@ -17,10 +17,15 @@ public class Curso {
     public void agregarAsignatura(Asignatura asignatura) {
         this.asignatura.add(asignatura);
     }
-
-    public void eliminarAlumno(String rut){
-        for(int i=0; i < alumno.size() ; i++){
-            if (alumno.get(i).getRut().equals(rut)){
+    
+    public int largo(){ return asignatura.size(); }
+    
+    public int largo(int x){ return alumno.size(); }
+    
+    @Override
+    public void eliminarDato(String rut){
+        for(int i=0; i<alumno.size(); i++){
+            if(alumno.get(i).getRut().equals(rut)){
                 this.alumno.remove(i);
                 System.out.println("\nAlumno eliminado con exito.\n");
                 return;
@@ -28,8 +33,9 @@ public class Curso {
         }
         System.out.println("\nEl alumno ingresado no existe.\n");
     }
-
-    public void eliminarAsignatura(String sigla){
+    
+    @Override
+    public void eliminarDato(String sigla, int x){
         for(int i = 0 ; i < asignatura.size() ; i++){
             if(asignatura.get(i).getSigla().equals(sigla)){
                 this.asignatura.remove(i);
@@ -39,8 +45,9 @@ public class Curso {
         }
         System.out.println("\nLa asignatura ingresada no existe.\n");
     }
-        
-    public void recorrerListaAlumno(){
+
+    @Override
+    public void recorrerLista(){
         if (alumno.size() == 0){
             System.out.println("\nNo hay alumnos registrados.\n");
             return;
@@ -53,7 +60,8 @@ public class Curso {
         System.out.println("\n");
     }
     
-    public void recorrerListaAlumno(int x){
+    @Override
+    public void recorrerLista(int x){
         if (alumno.size() != 0){
             System.out.println("\n- Lista de Alumnos -");
             int i;
@@ -65,7 +73,8 @@ public class Curso {
         if (alumno.size() == 0) System.out.println("\nNo hay alumnos registrados.\n");
     }
     
-    public void recorrerListaAsignatura(){
+    @Override
+    public void recorrerLista(short x){
         if (asignatura.size() == 0){
             System.out.println("\nNo hay asignaturas registradas.\n");
             return;
@@ -73,11 +82,15 @@ public class Curso {
         System.out.println("\n- Lista de Asignaturas -");
         int i;
         for(i=0; i<asignatura.size(); i++){
-            System.out.println(asignatura.get(i).getNombre()+" | "+asignatura.get(i).getSigla());
+            if(asignatura.get(i).getProfesor() == null){
+                System.out.println(asignatura.get(i).getNombre()+" | "+asignatura.get(i).getSigla()+" | Profesor: NO ASIGNADO");     
+            }else{
+                System.out.println(asignatura.get(i).getNombre()+" | "+asignatura.get(i).getSigla()+" | Profesor: "+asignatura.get(i).getProfesor().getNombre());
+            }
         }
         System.out.println("\n");
     }
-
+    
     public Asignatura buscarAsignatura(String sigla) {
         for(int i = 0 ; i < asignatura.size() ; i++){
             if ( asignatura.get(i).getSigla().equals(sigla) ){
@@ -96,11 +109,12 @@ public class Curso {
         return null;
     }
 
-    public void modificarAlumno(String rut, String nuevoNombre, String nuevoRut) throws IOException {
+    public void modificarAlumno(String rut, String nuevoNombre, String nuevoRut, int nuevaEdad) throws IOException {
         for(int i = 0 ; i < alumno.size() ; i++){
             if ( alumno.get(i).getRut().equals(rut) ){
                 alumno.get(i).setNombre(nuevoNombre);
                 alumno.get(i).setRut(nuevoRut);
+                alumno.get(i).setEdad(nuevaEdad);
                 System.out.println("\nAlumno modificado correctamente.\n");
                 return;
             }

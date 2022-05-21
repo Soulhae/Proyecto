@@ -1,11 +1,12 @@
 import java.util.*;
 import java.io.*;
 
-public class Asignatura {
+public class Asignatura implements Imprimible {
     private String nombre;
     private String sigla;
     private ArrayList<RecursoDigital> listRecDigital;
     private HashMap<String, RecursoDigital> mapRecDigital;
+    private Profesor profesor;
     
     public Asignatura(){
         this.nombre = "default";
@@ -29,6 +30,10 @@ public class Asignatura {
         this.mapRecDigital.put(clave,recDigital);
     }
     
+    public void agregarProfesor(Persona profesor){
+        this.profesor = (Profesor) profesor;
+    }
+    
     public void escribirRecDigital (File archivo, FileWriter fw, BufferedWriter bw, PrintWriter wr) {
         int i;
         for(i=0; i<listRecDigital.size(); i++) {
@@ -36,8 +41,9 @@ public class Asignatura {
         }
         wr.append("\n");
     }
-
-    public void eliminarRecDigital(String nombre){
+    
+    @Override
+    public void eliminarDato(String nombre){
         /* eliminar de la lista */
         int cont = 0;
         for(int i = 0 ; i < listRecDigital.size() ; i++){
@@ -47,9 +53,9 @@ public class Asignatura {
                 break;
             }
         }
-        /* Eliminar del mapa. No lo elimina correctamente */
+        /* Eliminar del mapa. */
         if (cont == 1){
-            RecursoDigital aux = buscarMapaRecDigital(nombre);
+            //RecursoDigital aux = buscarMapaRecDigital(nombre);
             this.mapRecDigital.remove(nombre);
             cont ++;
         }
@@ -57,7 +63,8 @@ public class Asignatura {
         else System.out.println("\nEl Recurso digital ingresado no existe.\n");
     }
     
-    public void recorrerListaRecDigital(){
+    @Override
+    public void recorrerLista(){
         if(listRecDigital.isEmpty()){
             System.out.println("\nEsta asignatura no tiene recursos digitales registrados.");
         }else{
@@ -97,7 +104,6 @@ public class Asignatura {
         return this.mapRecDigital.get(clave);
     }
 
-    
     public String getNombre() {
         return nombre;
     }
@@ -114,4 +120,18 @@ public class Asignatura {
         this.sigla = sigla;
     }
     
+    public Profesor getProfesor(){
+        return profesor;
+    }
+    
+    public void setProfesor(Persona profesor){
+        this.profesor = (Profesor) profesor;
+    }
+    
+    @Override
+    public void eliminarDato(String s, int x){};
+    @Override
+    public void recorrerLista(int x){};
+    @Override
+    public void recorrerLista(short x){};
 }

@@ -13,7 +13,7 @@ public abstract class Persona {
     
     public boolean validar(String letra){
         boolean valido = true;
-        if(!letra.matches("[A-Z]*")){
+        if(!letra.matches("[A-Z]*") && !letra.matches("[a-z]*")){
             valido = false;
         }
         return valido;

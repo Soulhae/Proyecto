@@ -1,40 +1,50 @@
 import java.util.*;
-import java.io.*;
 
 public class Alumno extends Persona{
-    private String rolAlumno;
+    private double rolAlumno;
     private ArrayList<Double> notas;
     
     public Alumno(){
         super();
-        this.rolAlumno = "default";
+        this.rolAlumno = 0.0;
         this.notas = new ArrayList<>();
     }
-    
-    public void setRolAlumno(String rolAlumno){
-        this.rolAlumno = rolAlumno;
+     
+    public void setRolAlumno(String rut){
+        int ultimoDig;
+        int primerDig;
+        if(Character.isDigit(rut.charAt(rut.length()-1))){
+            primerDig = Integer.parseInt(rut.substring(0, 1));
+            ultimoDig = Integer.parseInt(rut.substring(rut.length()-1));
+        }else{
+            primerDig = Integer.parseInt(rut.substring(0, 1));
+            ultimoDig = (int) Math.round(Math.random() * 9);
+        }
+        
+        rolAlumno = Math.pow(Math.abs(ultimoDig-primerDig),ultimoDig) + 1337 * Math.round(Math.random());
     }
     
-    public String getRolAlumno(){
+    public double getRolAlumno(){
         return rolAlumno;
     }
     
     @Override
     public void identidad(){
-        System.out.println("Nombre: "+getNombre());
+        System.out.println("\nNombre: "+getNombre());
         System.out.println("Rut: "+getRut());
         System.out.println("Edad: "+getEdad());
-        System.out.println("Rol Alumno: "+rolAlumno);
+        System.out.println("Rol Alumno: "+(int)rolAlumno);
+        System.out.println("");
     }
     
     @Override
     /* imprimir lista de notas */
     public void listar(){
         if (notas.size() == 0){
-            System.out.println("\nNo hay notas registradas.\n");
+            System.out.println("\nNo hay notas registradas del alumno "+getNombre()+".\n");
             return;
         }
-        System.out.println("\n- Lista de notas -");
+        System.out.println("\n- Lista de notas del alumno "+getNombre()+" -");
         int i;
         for(i = 0 ; i < notas.size() ; i++){
             System.out.println(notas.get(i));
