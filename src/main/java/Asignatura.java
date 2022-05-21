@@ -11,7 +11,7 @@ public class Asignatura {
         this.nombre = "default";
         this.sigla = "default";
         this.listRecDigital = new ArrayList<>();
-        this.mapRecDigital = new HashMap<>(); 
+        this.mapRecDigital = new HashMap<>();
     }
     
     public Asignatura(String nombre, String sigla){

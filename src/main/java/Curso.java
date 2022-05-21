@@ -87,6 +87,15 @@ public class Curso {
         return null;
     }
 
+    public Persona buscarAlumno(String rut){
+        for(int i = 0 ; i < alumno.size() ; i++){
+            if ( alumno.get(i).getRut().equals(rut) ){
+                return alumno.get(i);
+            }
+        }
+        return null;
+    }
+
     public void modificarAlumno(String rut, String nuevoNombre, String nuevoRut) throws IOException {
         for(int i = 0 ; i < alumno.size() ; i++){
             if ( alumno.get(i).getRut().equals(rut) ){
@@ -109,6 +118,33 @@ public class Curso {
             }
         }
         System.out.println("\nLa asignatura ingresada no existe.\n");
+    }
+
+    public Persona obtenerAlumnoBajo(){
+        double promedioBajo = 8;
+        Persona alumnoSeleccionado = new Alumno();
+        for (int i = 0 ; i < alumno.size() ; i++){
+            if ( promedioBajo > ( (Alumno) alumno.get(i) ).obtenerPromedio() ){
+                promedioBajo = ( (Alumno) alumno.get(i) ).obtenerPromedio();
+                alumnoSeleccionado = (Alumno) alumno.get(i);
+            }
+        }
+        return (Alumno) alumnoSeleccionado;
+    }
+
+    public boolean notaRango(){
+        double promedioRango = 0.0;
+        int cont = 0;
+        for (int i = 0 ; i < alumno.size() ; i++){
+            promedioRango = ( (Alumno) alumno.get(i) ).obtenerPromedio();
+            if (promedioRango == 0.0) cont ++;
+            if ( promedioRango <= 7.0 && promedioRango >= 4.0 ){
+                System.out.println("Promedio: "+promedioRango+" | Alumno: "+ alumno.get(i).getNombre() +" - "+ alumno.get(i).getRut());
+            }
+        }
+        cont ++;
+        if (cont == alumno.size()) return false;
+        return true;
     }
     
     public void generarTXT () {

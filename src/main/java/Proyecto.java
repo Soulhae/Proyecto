@@ -20,17 +20,21 @@ public class Proyecto {
             System.out.println("2.- Ingresar alumno");
             System.out.println("3.- Ingresar asignatura");
             System.out.println("4.- Ingresar recurso digital");
-            System.out.println("5.- Eliminar alumno");
-            System.out.println("6.- Eliminar asignatura");
-            System.out.println("7.- Eliminar recurso digital");
-            System.out.println("8.- Modificar alumno");
-            System.out.println("9.- Modificar asignatura");
-            System.out.println("10.- Modificar recurso digital");
-            System.out.println("11.- Ver lista de alumnos por curso");
-            System.out.println("12.- Ver lista de asignaturas");
-            System.out.println("13.- Ver lista de recursos digitales");
-            System.out.println("14.- Buscar recurso digital");
-            System.out.println("15.- Salir ");
+            System.out.println("5.- Ingresar nota a un alumno");
+            System.out.println("6.- Eliminar alumno");
+            System.out.println("7.- Eliminar asignatura");
+            System.out.println("8.- Eliminar recurso digital");
+            System.out.println("9.- Modificar alumno");
+            System.out.println("10.- Modificar asignatura");
+            System.out.println("11.- Modificar recurso digital");
+            System.out.println("12.- Ver lista de alumnos por curso");
+            System.out.println("13.- Ver lista de notas de un alumno");
+            System.out.println("14.- Ver lista de asignaturas");
+            System.out.println("15.- Ver lista de recursos digitales");
+            System.out.println("16.- Buscar recurso digital");
+            System.out.println("17.- Seleccionar alumno con la nota final mas baja de todos los cursos");
+            System.out.println("18.- Seleccion de alumnos con nota final entre 4.0 y 7.0 de todos los cursos");
+            System.out.println("19.- Salir ");
 
             try {
                 System.out.println("\nIngrese opcion: ");
@@ -131,6 +135,33 @@ public class Proyecto {
                         break;
                     case 5:
 
+                        System.out.println("\nIngrese el curso: ");
+                        System.out.println("1.- 1° Medio");
+                        System.out.println("2.- 2° Medio");
+                        System.out.println("3.- 3° Medio");
+                        System.out.println("4.- 4° Medio\n");
+                        numCurso = Integer.parseInt(lector.readLine());
+                        numCurso --;
+                        
+                        System.out.println("Ingrese rut del alumno, de la forma '12.345.678-9'.");
+                        rut = lector.readLine();
+
+                        System.out.println("Ingrese nota del alumno.");
+                        double nota = Double.parseDouble(lector.readLine());
+                        //System.out.println("\n"+nota+"\n");
+
+                        Persona auxAlumno = new Alumno();
+                        auxAlumno = (Alumno) curso[numCurso].buscarAlumno(rut);
+                        while (auxAlumno == null){
+                            System.out.println("El alumno ingresado no existe. Vuelva a intentarlo.");
+                            rut = lector.readLine();
+                            auxAlumno = (Alumno) curso[numCurso].buscarAlumno(rut);
+                        }
+                        ((Alumno) auxAlumno).agregarNota(nota);
+
+                        break;
+                    case 6:
+
                         System.out.println("\nIngrese el curso del alumno: ");
                         System.out.println("1.- 1° Medio");
                         System.out.println("2.- 2° Medio");
@@ -144,7 +175,7 @@ public class Proyecto {
                         curso[numCurso].eliminarAlumno(rut);
 
                         break;
-                    case 6:
+                    case 7:
 
                         System.out.println("\nIngrese el curso del alumno: ");
                         System.out.println("1.- 1° Medio");
@@ -158,7 +189,7 @@ public class Proyecto {
                         sigla = lector.readLine();
                         curso[numCurso].eliminarAsignatura(sigla);
                         break;
-                    case 7:
+                    case 8:
 
                         System.out.println("\nIngrese el curso del alumno: ");
                         System.out.println("1.- 1° Medio");
@@ -182,7 +213,7 @@ public class Proyecto {
                         auxAsignatura.eliminarRecDigital(nombre);
 
                         break;
-                    case 8:
+                    case 9:
 
                         System.out.println("\nIngrese el curso del alumno: ");
                         System.out.println("1.- 1° Medio");
@@ -202,7 +233,7 @@ public class Proyecto {
                         curso[numCurso].modificarAlumno(rut, nuevoNombre, nuevoRut);
 
                         break;
-                    case 9:
+                    case 10:
 
                         System.out.println("\nIngrese el curso de la asignatura a modificar: ");
                         System.out.println("1.- 1° Medio");
@@ -222,7 +253,7 @@ public class Proyecto {
                         curso[numCurso].modificarAsignatura(sigla, nuevoNombreAsig, nuevaSigla);
 
                         break;
-                    case 10:
+                    case 11:
 
                         System.out.println("\nIngrese el curso: ");
                         System.out.println("1.- 1° Medio");
@@ -245,7 +276,7 @@ public class Proyecto {
                         auxAsignatura.modificarRecDigital(nombreRecDigital, nuevoNombreRedDigital, nuevoTipo);
 
                         break;
-                    case 11:
+                    case 12:
                         
                         System.out.println("\nIngrese el curso: ");
                         System.out.println("1.- 1° Medio");
@@ -273,7 +304,21 @@ public class Proyecto {
                         if (x == 2) curso[numCurso].recorrerListaAlumno(x);
 
                         break;
-                    case 12:
+                    case 13:
+                        System.out.println("\nIngrese el curso: ");
+                        System.out.println("1.- 1° Medio");
+                        System.out.println("2.- 2° Medio");
+                        System.out.println("3.- 3° Medio");
+                        System.out.println("4.- 4° Medio\n");
+                        numCurso = Integer.parseInt(lector.readLine());
+                        numCurso --;
+                        
+                        System.out.println("Ingrese rut del alumno, de la forma '12.345.678-9'.");
+                        rut = lector.readLine();
+                        
+                        curso[numCurso].buscarAlumno(rut).listar();
+                        break;
+                    case 14:
 
                         System.out.println("\nIngrese el curso: ");
                         System.out.println("1.- 1° Medio");
@@ -286,7 +331,7 @@ public class Proyecto {
                         curso[numCurso].recorrerListaAsignatura();
 
                         break;
-                    case 13:
+                    case 15:
                     
                         System.out.println("\nIngrese el curso: ");
                         System.out.println("1.- 1° Medio");
@@ -306,7 +351,7 @@ public class Proyecto {
                         curso[numCurso].buscarAsignatura(sigla1).recorrerListaRecDigital();
 
                         break;
-                    case 14:
+                    case 16:
 
                         System.out.println("\nIngrese el curso: ");
                         System.out.println("1.- 1° Medio");
@@ -338,11 +383,42 @@ public class Proyecto {
                         }
    
                         break;
-                    case 15:
+                    case 17: /* Seleccionar alumno con la nota final mas baja de todos los cursos */
+
+                        Persona seleccionarAlumno = new Alumno(); /* Alumno con el promedio mas bajo */
+                        Persona auxSeleccionarAlumno = new Alumno(); /* Alumno que se compara */
+                        double promedioCursoBajo = 8;
+                        for (int i = 0 ; i < 4 ; i++){
+                            auxSeleccionarAlumno = ((Alumno) curso[i].obtenerAlumnoBajo()); /* retorna el alumno */
+                            if ( promedioCursoBajo > ( (Alumno) auxSeleccionarAlumno ).obtenerPromedio() ){
+                                promedioCursoBajo = ( (Alumno) auxSeleccionarAlumno ).obtenerPromedio();
+                                seleccionarAlumno = auxSeleccionarAlumno;
+                            }
+                        }
+                        if (promedioCursoBajo == 8.0){
+                            System.out.println("\nNo hay notas registradas.\n");
+                        }
+                        else{
+                            System.out.println("\nEl alumno con promedio "+promedioCursoBajo+" es: "+ seleccionarAlumno.getNombre() +" - "+ seleccionarAlumno.getRut()+"\n");
+                        }
+
+                        break;
+                    case 18: /* Seleccion de alumnos con nota final entre 4.0 y 7.0 de todos los cursos */
+                        System.out.println("\nLista de Alumnos con promedio entre 4.0 y 7.0");
+                        boolean aux;
+                        int cont = 0;
+                        for(int i = 0 ; i < 4 ; i++){
+                            aux = curso[i].notaRango();
+                            if (aux == false) cont ++;
+                        }
+                        if (cont == 0) System.out.println("No hay notas registradas.");
+                        System.out.println("\n");
+                        break;
+                    case 19:
                         salir = true;
                         break;
                     default:
-                        System.out.println("Ingrese solo opciones del 1 al 15.");
+                        System.out.println("Ingrese solo opciones del 1 al 17.");
                 }
             }
             catch(InputMismatchException e){
