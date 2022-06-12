@@ -161,6 +161,16 @@ public class Curso implements Imprimible{
         return true;
     }
     
+    public boolean existenAlumnos(){
+        if (alumno.size() == 0) return false;
+        else return true;
+    }
+    
+    public boolean existenAsignaturas(){
+        if (asignatura.size() == 0) return false;
+        else return true;
+    }
+    
     public void generarTXT () {
         File archivo;
         FileWriter fw;
