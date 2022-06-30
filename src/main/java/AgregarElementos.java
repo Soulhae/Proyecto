@@ -8,10 +8,10 @@ import javax.swing.WindowConstants;
 
 public class AgregarElementos extends javax.swing.JFrame {
     
-    private Curso curso;
+    private Institucion institucion;
     BufferedReader lector = new BufferedReader ( new InputStreamReader (System.in) );
     
-    public AgregarElementos(Curso curso) {
+    public AgregarElementos(Institucion institucion) {
         
         initComponents();
         
@@ -20,7 +20,7 @@ public class AgregarElementos extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setTitle("Agregar Elementos");
         this.getContentPane().setBackground(Color.PINK);
-        this.curso = curso;
+        this.institucion = institucion;
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
     }
 
@@ -33,14 +33,15 @@ public class AgregarElementos extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        ingresarAlumno1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        ingresarAlumno = new javax.swing.JButton();
         ingresarProfesor = new javax.swing.JButton();
         ingresarAsignatura = new javax.swing.JButton();
         ingresarRecDigital = new javax.swing.JButton();
         ingresarNota = new javax.swing.JButton();
         ingresarTituloProfesor = new javax.swing.JButton();
         salir = new javax.swing.JButton();
+        ingresarAlumnoAsig = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         openMenuItem = new javax.swing.JMenuItem();
@@ -56,25 +57,25 @@ public class AgregarElementos extends javax.swing.JFrame {
         contentsMenuItem = new javax.swing.JMenuItem();
         aboutMenuItem = new javax.swing.JMenuItem();
 
+        ingresarAlumno1.setText("1.- Ingresar alumno a la Institucion");
+        ingresarAlumno1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ingresarAlumno1ActionPerformed(evt);
+            }
+        });
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel2.setText("Seleccione una opción:");
 
-        ingresarAlumno.setText("1.- Ingresar Alumno");
-        ingresarAlumno.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ingresarAlumnoActionPerformed(evt);
-            }
-        });
-
-        ingresarProfesor.setText("2.- Ingresar Profesor");
+        ingresarProfesor.setText("3.- Ingresar Profesor");
         ingresarProfesor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ingresarProfesorActionPerformed(evt);
             }
         });
 
-        ingresarAsignatura.setText("3.- Ingresar Asignatura");
+        ingresarAsignatura.setText("1.- Ingresar Asignatura");
         ingresarAsignatura.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ingresarAsignaturaActionPerformed(evt);
@@ -106,6 +107,13 @@ public class AgregarElementos extends javax.swing.JFrame {
         salir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 salirActionPerformed(evt);
+            }
+        });
+
+        ingresarAlumnoAsig.setText("2.- Ingresar alumno a una asignatura");
+        ingresarAlumnoAsig.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ingresarAlumnoAsigActionPerformed(evt);
             }
         });
 
@@ -180,23 +188,19 @@ public class AgregarElementos extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(ingresarProfesor)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(salir)
+                        .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(salir))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(ingresarTituloProfesor)
-                                    .addComponent(ingresarAlumno)
-                                    .addComponent(ingresarNota)
-                                    .addComponent(ingresarRecDigital)
-                                    .addComponent(ingresarAsignatura))
-                                .addGap(0, 135, Short.MAX_VALUE)))
-                        .addContainerGap())))
+                            .addComponent(ingresarProfesor)
+                            .addComponent(ingresarTituloProfesor)
+                            .addComponent(ingresarNota)
+                            .addComponent(ingresarRecDigital)
+                            .addComponent(ingresarAsignatura)
+                            .addComponent(ingresarAlumnoAsig))
+                        .addGap(0, 141, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -206,9 +210,9 @@ public class AgregarElementos extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(salir))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ingresarAlumno)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ingresarAsignatura)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ingresarAlumnoAsig)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ingresarProfesor)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -217,7 +221,7 @@ public class AgregarElementos extends javax.swing.JFrame {
                 .addComponent(ingresarNota)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ingresarTituloProfesor)
-                .addContainerGap(99, Short.MAX_VALUE))
+                .addContainerGap(156, Short.MAX_VALUE))
         );
 
         pack();
@@ -227,49 +231,23 @@ public class AgregarElementos extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_exitMenuItemActionPerformed
 
-    private void ingresarAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresarAlumnoActionPerformed
-
-        Persona alumno = new Alumno();
-        System.out.println("\nIngrese nombre y apellido del alumno, de la forma 'Nombre Apellido'.");
-        try {
-            String nombre = lector.readLine();
-            alumno.setNombre(nombre);
-        } catch (IOException ex) {
-            Logger.getLogger(AgregarElementos.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        System.out.println("Ingrese rut del alumno, de la forma '12.345.678-9'.");
-        try {
-            String rut = lector.readLine();
-            alumno.setRut(rut);
-            ((Alumno) alumno).setRolAlumno(rut);
-        } catch (IOException ex) {
-            Logger.getLogger(AgregarElementos.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        System.out.println("Ingrese edad del alumno.");
-        try {
-            int edad = Integer.parseInt(lector.readLine());
-            alumno.setEdad(edad);
-        } catch (IOException ex) {
-            Logger.getLogger(AgregarElementos.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        curso.agregarAlumno(alumno);
-        System.out.println("\nAlumno ingresado.\n");
-        
-    }//GEN-LAST:event_ingresarAlumnoActionPerformed
-
     private void ingresarProfesorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresarProfesorActionPerformed
         
         String siglaAsig = null;
+        
+        if(institucion.existenAsignaturas()==false){
+            System.out.println("La institucion no posee asignaturas.");
+            System.out.println("Por favor, ingrese al menos una antes de agregar un profesor.\n");
+            return;
+        }
+        
         System.out.println("\nIngrese la sigla de la asignatura que imparte el profesor: ");
         try {
             siglaAsig = lector.readLine();
         } catch (IOException ex) {
             Logger.getLogger(AgregarElementos.class.getName()).log(Level.SEVERE, null, ex);
         }
-        while (curso.buscarAsignatura(siglaAsig) == null){
+        while (institucion.buscarAsignatura(siglaAsig) == null){
             System.out.println("Inténtelo nuevamente. Ingrese una sigla válida. ");
             try {
                 siglaAsig = lector.readLine();
@@ -315,7 +293,7 @@ public class AgregarElementos extends javax.swing.JFrame {
         }
         profesor.setEdad(edad);
 
-        curso.buscarAsignatura(siglaAsig).agregarProfesor(profesor);
+        institucion.buscarAsignatura(siglaAsig).agregarProfesor(profesor);
         System.out.println("\nProfesor ingresado.\n");
         
     }//GEN-LAST:event_ingresarProfesorActionPerformed
@@ -342,7 +320,7 @@ public class AgregarElementos extends javax.swing.JFrame {
         asignatura.setNombre(asig);
         asignatura.setSigla(sigla);
 
-        curso.agregarAsignatura(asignatura);
+        institucion.agregarAsignatura(asignatura);
         System.out.println("\nAsignatura agregada.\n");
         
     }//GEN-LAST:event_ingresarAsignaturaActionPerformed
@@ -350,6 +328,13 @@ public class AgregarElementos extends javax.swing.JFrame {
     private void ingresarRecDigitalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresarRecDigitalActionPerformed
         
         RecursoDigital recDigital = new RecursoDigital();
+        
+        if(institucion.existenAsignaturas()==false){
+            System.out.println("La institucion no posee asignaturas.");
+            System.out.println("Por favor, ingrese al menos una antes de agregar un recurso digital.\n");
+            return;
+        }
+        
         System.out.println("\nIngrese la sigla de la Asignatura: ");
         String siglaAsig = null;
         try {
@@ -357,7 +342,7 @@ public class AgregarElementos extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(AgregarElementos.class.getName()).log(Level.SEVERE, null, ex);
         }
-        while (curso.buscarAsignatura(siglaAsig) == null){
+        while (institucion.buscarAsignatura(siglaAsig) == null){
             /* if (siglaAsig.equals("Salir")) System.exit(0); Buscar una forma para pasar de la consola a la ventana */
             System.out.println("Inténtelo nuevamente. Ingrese una sigla válida. ");
             try {
@@ -385,12 +370,36 @@ public class AgregarElementos extends javax.swing.JFrame {
         recDigital.setTipo(tipo);
         recDigital.setNombre(nombreRedDigital);
 
-        curso.buscarAsignatura(siglaAsig).agregarRecDigital(recDigital);
-        curso.buscarAsignatura(siglaAsig).agregarRecDigital(recDigital.getNombre(), recDigital);
+        institucion.buscarAsignatura(siglaAsig).agregarRecDigital(recDigital);
+        institucion.buscarAsignatura(siglaAsig).agregarRecDigital(recDigital.getNombre(), recDigital);
         System.out.println("\nRecurso Digital agregado.\n");
     }//GEN-LAST:event_ingresarRecDigitalActionPerformed
 
     private void ingresarNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresarNotaActionPerformed
+        
+        String siglaAsig = null;
+        
+        if(institucion.existenAsignaturas()==false){
+            System.out.println("La institucion no posee asignaturas y por lo tanto no hay alumnos.");
+            System.out.println("Por favor, ingrese al menos una asignatura antes de agregar una nota.\n");
+            return;
+        }
+        
+        System.out.println("\nIngrese la sigla de la Asignatura: ");
+        try {
+            siglaAsig = lector.readLine();
+        } catch (IOException ex) {
+            Logger.getLogger(AgregarElementos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        while (institucion.buscarAsignatura(siglaAsig) == null){
+            System.out.println("Inténtelo nuevamente. Ingrese una sigla válida. ");
+            try {
+                siglaAsig = lector.readLine();
+            } catch (IOException ex) {
+                Logger.getLogger(AgregarElementos.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
         
         System.out.println("Ingrese rut del alumno, de la forma '12.345.678-9'.");
         String rut = null;
@@ -400,43 +409,57 @@ public class AgregarElementos extends javax.swing.JFrame {
             Logger.getLogger(AgregarElementos.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+        Asignatura asig = institucion.buscarAsignatura(siglaAsig);
+        
         double nota = 0;
         Persona auxAlumno = new Alumno();
-        auxAlumno = (Alumno) curso.buscarAlumno(rut);
-        while (auxAlumno == null){
-            System.out.println("El alumno ingresado no existe. Vuelva a intentarlo.");
+        auxAlumno = (Alumno) asig.buscarAlumno(rut);
+        if (!asig.existenAlumnos()){
+            System.out.println("La asignatura no tiene alumnos registrados.");
+        }
+        else{
+            while (auxAlumno == null){
+                System.out.println("El alumno ingresado no existe. Vuelva a intentarlo.");
+                try {
+                    rut = lector.readLine();
+                } catch (IOException ex) {
+                    Logger.getLogger(AgregarElementos.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                auxAlumno = (Alumno) asig.buscarAlumno(rut);
+            }
+
+            System.out.println("Ingrese nota del alumno, rango de 1.0 a 7.0");
             try {
-                rut = lector.readLine();
+                nota = Double.parseDouble(lector.readLine());
             } catch (IOException ex) {
                 Logger.getLogger(AgregarElementos.class.getName()).log(Level.SEVERE, null, ex);
             }
-            auxAlumno = (Alumno) curso.buscarAlumno(rut);
-        }
 
-        System.out.println("Ingrese nota del alumno, rango de 1.0 a 7.0");
-        try {
-            nota = Double.parseDouble(lector.readLine());
-        } catch (IOException ex) {
-            Logger.getLogger(AgregarElementos.class.getName()).log(Level.SEVERE, null, ex);
+            ((Alumno) auxAlumno).agregarNota(nota);
+            System.out.println("\nNota ingresada correctamente\n");
         }
-
-        ((Alumno) auxAlumno).agregarNota(nota);
-        System.out.println("\nNota ingresada correctamente\n");
         
     }//GEN-LAST:event_ingresarNotaActionPerformed
 
     private void ingresarTituloProfesorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresarTituloProfesorActionPerformed
         
         String titulo = null;
-        System.out.println("\nIngrese la sigla de la Asignatura: ");
         String siglaAsig = null;
+        
+        if(institucion.existenAsignaturas()==false){
+            System.out.println("La institucion no posee asignaturas y por lo tanto no hay profesores.");
+            System.out.println("Por favor, ingrese al menos una asignatura antes de agregar un titulo profesional.\n");
+            return;
+        }
+        
+        System.out.println("\nIngrese la sigla de la Asignatura: ");
         try {
             siglaAsig = lector.readLine();
         } catch (IOException ex) {
             Logger.getLogger(AgregarElementos.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        while (curso.buscarAsignatura(siglaAsig) == null){
+        while (institucion.buscarAsignatura(siglaAsig) == null){
             System.out.println("Inténtelo nuevamente. Ingrese una sigla válida. ");
             try {
                 siglaAsig = lector.readLine();
@@ -445,14 +468,14 @@ public class AgregarElementos extends javax.swing.JFrame {
             }
         }
         
-        if(curso.buscarAsignatura(siglaAsig).getProfesor() != null){
+        if(institucion.buscarAsignatura(siglaAsig).getProfesor() != null){
             System.out.println("Ingrese el título profesional: ");
             try {
                 titulo = lector.readLine();
             } catch (IOException ex) {
                 Logger.getLogger(AgregarElementos.class.getName()).log(Level.SEVERE, null, ex);
             }
-            curso.buscarAsignatura(siglaAsig).getProfesor().agregarProfesion(titulo);
+            institucion.buscarAsignatura(siglaAsig).getProfesor().agregarProfesion(titulo);
         }else{
             System.out.println("La asignatura no tiene asignado un profesor.\n");
         }
@@ -462,6 +485,67 @@ public class AgregarElementos extends javax.swing.JFrame {
     private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
         System.exit(0);
     }//GEN-LAST:event_salirActionPerformed
+
+    private void ingresarAlumno1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresarAlumno1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ingresarAlumno1ActionPerformed
+
+    private void ingresarAlumnoAsigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresarAlumnoAsigActionPerformed
+        
+        String siglaAsig = null;
+        
+        if(institucion.existenAsignaturas()==false){
+            System.out.println("La institucion no posee asignaturas.");
+            System.out.println("Por favor, ingrese al menos una antes de agregar un alumno.\n");
+            return;
+        }
+        
+        System.out.println("\nIngrese la sigla de la Asignatura: ");
+        try {
+            siglaAsig = lector.readLine();
+        } catch (IOException ex) {
+            Logger.getLogger(AgregarElementos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        while (institucion.buscarAsignatura(siglaAsig) == null){
+            System.out.println("Inténtelo nuevamente. Ingrese una sigla válida. ");
+            try {
+                siglaAsig = lector.readLine();
+            } catch (IOException ex) {
+                Logger.getLogger(AgregarElementos.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+        Persona alumno = new Alumno();
+        System.out.println("\nIngrese nombre y apellido del alumno, de la forma 'Nombre Apellido'.");
+        try {
+            String nombre = lector.readLine();
+            alumno.setNombre(nombre);
+        } catch (IOException ex) {
+            Logger.getLogger(AgregarElementos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        System.out.println("Ingrese rut del alumno, de la forma '12.345.678-9'.");
+        try {
+            String rut = lector.readLine();
+            alumno.setRut(rut);
+            ((Alumno) alumno).setRolAlumno(rut);
+        } catch (IOException ex) {
+            Logger.getLogger(AgregarElementos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        System.out.println("Ingrese edad del alumno.");
+        try {
+            int edad = Integer.parseInt(lector.readLine());
+            alumno.setEdad(edad);
+        } catch (IOException ex) {
+            Logger.getLogger(AgregarElementos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        Asignatura asig = (Asignatura) institucion.buscarAsignatura(siglaAsig);
+        asig.agregarAlumno(alumno);
+        System.out.println("\nAlumno registrado en la asignatura '"+asig+"'.\n"); // no imprime bien la asignatura
+    }//GEN-LAST:event_ingresarAlumnoAsigActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem aboutMenuItem;
@@ -473,7 +557,8 @@ public class AgregarElementos extends javax.swing.JFrame {
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenu helpMenu;
-    private javax.swing.JButton ingresarAlumno;
+    private javax.swing.JButton ingresarAlumno1;
+    private javax.swing.JButton ingresarAlumnoAsig;
     private javax.swing.JButton ingresarAsignatura;
     private javax.swing.JButton ingresarNota;
     private javax.swing.JButton ingresarProfesor;

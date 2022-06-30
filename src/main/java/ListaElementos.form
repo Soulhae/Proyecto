@@ -128,14 +128,14 @@
                   </Group>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="datosAlumnoProfesor" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="listaAlumnos" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="notasAlumno" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="titulosProfesor" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="listaAsignaturas" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="listaRecDigital" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="datosAlumnos" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="titulosProfesor" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="datosProfesor" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="0" pref="102" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="238" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -151,11 +151,11 @@
                   <Component id="salir" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="datosAlumnoProfesor" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="listaAlumnos" min="-2" max="-2" attributes="0"/>
+              <Component id="datosAlumnos" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="notasAlumno" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="datosProfesor" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="titulosProfesor" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
@@ -173,25 +173,17 @@
         <Property name="text" type="java.lang.String" value="Seleccione una opci&#xf3;n:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="datosAlumnoProfesor">
+    <Component class="javax.swing.JButton" name="datosProfesor">
       <Properties>
-        <Property name="text" type="java.lang.String" value="1.- Ver datos de un alumno o profesor espec&#xed;fico"/>
+        <Property name="text" type="java.lang.String" value="3.- Ver datos de un profesor espec&#xed;fico"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="datosAlumnoProfesorActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="listaAlumnos">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="2.- Alumnos registrados"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="listaAlumnosActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="datosProfesorActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="notasAlumno">
       <Properties>
-        <Property name="text" type="java.lang.String" value="3.- Notas de un alumno"/>
+        <Property name="text" type="java.lang.String" value="2.- Notas de un alumno"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="notasAlumnoActionPerformed"/>
@@ -227,6 +219,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="salirActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="datosAlumnos">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="1.- Alumnos registrados por asignatura"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="datosAlumnosActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

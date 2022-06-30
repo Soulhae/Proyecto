@@ -8,19 +8,19 @@ import javax.swing.WindowConstants;
 
 public class ModificarElementos extends javax.swing.JFrame {
 
-    private Curso curso;
+    private Institucion institucion;
     BufferedReader lector = new BufferedReader ( new InputStreamReader (System.in) );
     
-    public ModificarElementos(Curso curso) {
+    public ModificarElementos(Institucion institucion) {
         
         initComponents();
         
         /* Establecemos el tamaño de la ventana , la centramos, el título y terminar la ejecución del programa si la ventana se cierra. */
         setSize(500,500);
         setLocationRelativeTo(null);
-        setTitle("Agregar Elementos");
+        setTitle("Modificar Elementos");
         this.getContentPane().setBackground(Color.PINK);
-        this.curso = curso;
+        this.institucion = institucion;
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         
     }
@@ -197,7 +197,31 @@ public class ModificarElementos extends javax.swing.JFrame {
 
     private void modificarAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarAlumnoActionPerformed
         
-        if (curso.existenAlumnos() == false){
+        if(institucion.existenAsignaturas()==false){
+            System.out.println("La institucion no posee asignaturas y por lo tanto no hay alumnos para modificar.\n");
+            return;
+        }
+        
+        System.out.println("\nIngrese la sigla de la Asignatura: ");
+        String siglaAsig = null;
+        try {
+            siglaAsig = lector.readLine();
+        } catch (IOException ex) {
+            Logger.getLogger(AgregarElementos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        while (institucion.buscarAsignatura(siglaAsig) == null){
+            System.out.println("Inténtelo nuevamente. Ingrese una sigla válida. ");
+            try {
+                siglaAsig = lector.readLine();
+            } catch (IOException ex) {
+                Logger.getLogger(AgregarElementos.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+        Asignatura asig = institucion.buscarAsignatura(siglaAsig);
+        
+        if (asig.existenAlumnos() == false){
             System.out.println("\nNo hay alumnos registrados.\n");
         }
         else{
@@ -234,7 +258,7 @@ public class ModificarElementos extends javax.swing.JFrame {
             }
 
             try {
-                curso.modificarAlumno(rut, nuevoNombre, nuevoRut, nuevaEdad);
+                asig.modificarAlumno(rut, nuevoNombre, nuevoRut, nuevaEdad);
             } catch (IOException ex) {
                 Logger.getLogger(ModificarElementos.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -242,8 +266,8 @@ public class ModificarElementos extends javax.swing.JFrame {
     }//GEN-LAST:event_modificarAlumnoActionPerformed
 
     private void modificarAsignaturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarAsignaturaActionPerformed
-        if (curso.existenAsignaturas() == false){
-            System.out.println("\nNo hay asignaturas registrados.\n");
+        if (institucion.existenAsignaturas() == false){
+            System.out.println("\nNo hay asignaturas registradas.\n");
         }
         else{
             System.out.println("Ingrese la sigla de la asignatura a modificar.");
@@ -270,13 +294,13 @@ public class ModificarElementos extends javax.swing.JFrame {
                 Logger.getLogger(ModificarElementos.class.getName()).log(Level.SEVERE, null, ex);
             }
             
-            curso.modificarAsignatura(sigla, nuevoNombreAsig, nuevaSigla);
+            institucion.modificarAsignatura(sigla, nuevoNombreAsig, nuevaSigla);
         }
     }//GEN-LAST:event_modificarAsignaturaActionPerformed
 
     private void modificarRecDigitalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarRecDigitalActionPerformed
-        if(curso.existenAsignaturas() == false){
-            System.out.println("\nEl curso no posee asignaturas, por lo tanto, no existen recursos digitales.\n");
+        if(institucion.existenAsignaturas() == false){
+            System.out.println("\nLa institucion no posee asignaturas, por lo tanto, no existen recursos digitales para modificar.\n");
         }
         else{
             System.out.println("Ingrese la sigla de la asignatura del recurso digital a modificar:");
@@ -311,7 +335,7 @@ public class ModificarElementos extends javax.swing.JFrame {
                 Logger.getLogger(ModificarElementos.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-            Asignatura auxAsignatura = curso.buscarAsignatura(sigla);
+            Asignatura auxAsignatura = institucion.buscarAsignatura(sigla);
             auxAsignatura.modificarRecDigital(nombreRecDigital, nuevoNombreRedDigital, nuevoTipo);
         }
     }//GEN-LAST:event_modificarRecDigitalActionPerformed

@@ -2,6 +2,14 @@
 
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
+    <Component class="javax.swing.JButton" name="ingresarAlumno1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="1.- Ingresar alumno a la Institucion"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ingresarAlumno1ActionPerformed"/>
+      </Events>
+    </Component>
     <Menu class="javax.swing.JMenuBar" name="menuBar">
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="fileMenu">
@@ -121,29 +129,22 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="ingresarProfesor" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="salir" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="salir" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="ingresarTituloProfesor" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="ingresarAlumno" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="ingresarNota" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="ingresarRecDigital" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="ingresarAsignatura" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="0" pref="135" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="ingresarProfesor" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="ingresarTituloProfesor" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="ingresarNota" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="ingresarRecDigital" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="ingresarAsignatura" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="ingresarAlumnoAsig" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="141" max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -158,9 +159,9 @@
                   <Component id="salir" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="ingresarAlumno" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
               <Component id="ingresarAsignatura" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="ingresarAlumnoAsig" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="ingresarProfesor" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
@@ -169,7 +170,7 @@
               <Component id="ingresarNota" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="ingresarTituloProfesor" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="99" max="32767" attributes="0"/>
+              <EmptySpace pref="156" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -180,17 +181,9 @@
         <Property name="text" type="java.lang.String" value="Seleccione una opci&#xf3;n:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="ingresarAlumno">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="1.- Ingresar Alumno"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ingresarAlumnoActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JButton" name="ingresarProfesor">
       <Properties>
-        <Property name="text" type="java.lang.String" value="2.- Ingresar Profesor"/>
+        <Property name="text" type="java.lang.String" value="3.- Ingresar Profesor"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ingresarProfesorActionPerformed"/>
@@ -198,7 +191,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="ingresarAsignatura">
       <Properties>
-        <Property name="text" type="java.lang.String" value="3.- Ingresar Asignatura"/>
+        <Property name="text" type="java.lang.String" value="1.- Ingresar Asignatura"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ingresarAsignaturaActionPerformed"/>
@@ -234,6 +227,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="salirActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="ingresarAlumnoAsig">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="2.- Ingresar alumno a una asignatura"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ingresarAlumnoAsigActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

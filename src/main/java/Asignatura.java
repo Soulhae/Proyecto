@@ -6,13 +6,15 @@ public class Asignatura implements Imprimible {
     private String sigla;
     private ArrayList<RecursoDigital> listRecDigital;
     private HashMap<String, RecursoDigital> mapRecDigital;
-    private Profesor profesor;
+    private Persona profesor;
+    private ArrayList<Persona> listAlumnos;
     
     public Asignatura(){
         this.nombre = "default";
         this.sigla = "default";
         this.listRecDigital = new ArrayList<>();
         this.mapRecDigital = new HashMap<>();
+        this.listAlumnos = new ArrayList<>();
     }
     
     public Asignatura(String nombre, String sigla){
@@ -64,6 +66,18 @@ public class Asignatura implements Imprimible {
     }
     
     @Override
+    public void eliminarDato(String rut, int x){
+        for(int i=0; i<listAlumnos.size(); i++){
+            if(listAlumnos.get(i).getRut().equals(rut)){
+                this.listAlumnos.remove(i);
+                System.out.println("\nAlumno eliminado con exito.\n");
+                return;
+            }
+        }
+        System.out.println("\nEl alumno ingresado no existe.\n");
+    }
+    
+    @Override
     public void recorrerLista(){
         if(listRecDigital.isEmpty()){
             System.out.println("\nEsta asignatura no tiene recursos digitales registrados.");
@@ -103,7 +117,78 @@ public class Asignatura implements Imprimible {
     public RecursoDigital buscarMapaRecDigital(String clave){
         return this.mapRecDigital.get(clave);
     }
-
+    
+    public void agregarAlumno(Persona alumno) {
+        this.listAlumnos.add(alumno);
+    }
+    
+    public void recorrerAlumnosAsig(){
+        if (listAlumnos.size() == 0){
+            System.out.println("\nNo hay alumnos registrados.\n");
+            return;
+        }
+        System.out.println("\n- Lista de Alumnos -");
+        int i;
+        for(i=0; i<listAlumnos.size(); i++){
+            System.out.println(listAlumnos.get(i).getNombre()+" | "+listAlumnos.get(i).getRut());
+        }
+        System.out.println("\n");
+    }
+    
+    public Persona buscarAlumno(String rut){
+        for(int i = 0 ; i < listAlumnos.size() ; i++){
+            if ( listAlumnos.get(i).getRut().equals(rut) ){
+                return listAlumnos.get(i);
+            }
+        }
+        return null;
+    }
+    
+    public void modificarAlumno(String rut, String nuevoNombre, String nuevoRut, int nuevaEdad) throws IOException {
+        for(int i = 0 ; i < listAlumnos.size() ; i++){
+            if ( listAlumnos.get(i).getRut().equals(rut) ){
+                listAlumnos.get(i).setNombre(nuevoNombre);
+                listAlumnos.get(i).setRut(nuevoRut);
+                listAlumnos.get(i).setEdad(nuevaEdad);
+                System.out.println("\nAlumno modificado correctamente.\n");
+                return;
+            }
+        }
+        System.out.println("\nEl alumno ingresado no existe.\n");
+    }
+    
+    public boolean existenAlumnos(){
+        if (listAlumnos.size() == 0) return false;
+        else return true;
+    }
+    
+    public Persona obtenerAlumnoBajo(){
+        double promedioBajo = 8;
+        Persona alumnoSeleccionado = new Alumno();
+        for (int i = 0 ; i < listAlumnos.size() ; i++){
+            if ( promedioBajo > ( (Alumno) listAlumnos.get(i) ).obtenerPromedio() ){
+                promedioBajo = ( (Alumno) listAlumnos.get(i) ).obtenerPromedio();
+                alumnoSeleccionado = (Alumno) listAlumnos.get(i);
+            }
+        }
+        return (Alumno) alumnoSeleccionado;
+    }
+    
+    public boolean notaRango(){
+        double promedioRango = 0.0;
+        int cont = 0;
+        for (int i = 0 ; i < listAlumnos.size() ; i++){
+            promedioRango = ( (Alumno) listAlumnos.get(i) ).obtenerPromedio();
+            if (promedioRango == 0.0) cont ++;
+            if ( promedioRango <= 7.0 && promedioRango >= 4.0 ){
+                System.out.println("Promedio: "+promedioRango+" | Alumno: "+ listAlumnos.get(i).getNombre() +" - "+ listAlumnos.get(i).getRut());
+            }
+        }
+        cont ++;
+        if (cont == listAlumnos.size()) return false;
+        return true;
+    }
+    
     public String getNombre() {
         return nombre;
     }
@@ -121,17 +206,21 @@ public class Asignatura implements Imprimible {
     }
     
     public Profesor getProfesor(){
-        return profesor;
+        return (Profesor) profesor;
     }
     
     public void setProfesor(Persona profesor){
         this.profesor = (Profesor) profesor;
     }
+
+    @Override
+    public void recorrerLista(int x) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void recorrerLista(short x) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
-    @Override
-    public void eliminarDato(String s, int x){};
-    @Override
-    public void recorrerLista(int x){};
-    @Override
-    public void recorrerLista(short x){};
 }

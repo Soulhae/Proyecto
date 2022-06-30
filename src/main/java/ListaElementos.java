@@ -8,19 +8,19 @@ import javax.swing.WindowConstants;
 
 public class ListaElementos extends javax.swing.JFrame {
 
-    private Curso curso;
+    private Institucion institucion;
     BufferedReader lector = new BufferedReader ( new InputStreamReader (System.in) );
     
-    public ListaElementos(Curso curso) {
+    public ListaElementos(Institucion institucion) {
         
         initComponents();
         
         /* Establecemos el tamaño de la ventana , la centramos, el título y terminar la ejecución del programa si la ventana se cierra. */
         setSize(500,500);
         setLocationRelativeTo(null);
-        setTitle("Agregar Elementos");
+        setTitle("Ver datos de los elementos");
         this.getContentPane().setBackground(Color.PINK);
-        this.curso = curso;
+        this.institucion = institucion;
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         
     }
@@ -35,13 +35,13 @@ public class ListaElementos extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel2 = new javax.swing.JLabel();
-        datosAlumnoProfesor = new javax.swing.JButton();
-        listaAlumnos = new javax.swing.JButton();
+        datosProfesor = new javax.swing.JButton();
         notasAlumno = new javax.swing.JButton();
         titulosProfesor = new javax.swing.JButton();
         listaAsignaturas = new javax.swing.JButton();
         listaRecDigital = new javax.swing.JButton();
         salir = new javax.swing.JButton();
+        datosAlumnos = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         openMenuItem = new javax.swing.JMenuItem();
@@ -61,21 +61,14 @@ public class ListaElementos extends javax.swing.JFrame {
 
         jLabel2.setText("Seleccione una opción:");
 
-        datosAlumnoProfesor.setText("1.- Ver datos de un alumno o profesor específico");
-        datosAlumnoProfesor.addActionListener(new java.awt.event.ActionListener() {
+        datosProfesor.setText("3.- Ver datos de un profesor específico");
+        datosProfesor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                datosAlumnoProfesorActionPerformed(evt);
+                datosProfesorActionPerformed(evt);
             }
         });
 
-        listaAlumnos.setText("2.- Alumnos registrados");
-        listaAlumnos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                listaAlumnosActionPerformed(evt);
-            }
-        });
-
-        notasAlumno.setText("3.- Notas de un alumno");
+        notasAlumno.setText("2.- Notas de un alumno");
         notasAlumno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 notasAlumnoActionPerformed(evt);
@@ -107,6 +100,13 @@ public class ListaElementos extends javax.swing.JFrame {
         salir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 salirActionPerformed(evt);
+            }
+        });
+
+        datosAlumnos.setText("1.- Alumnos registrados por asignatura");
+        datosAlumnos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                datosAlumnosActionPerformed(evt);
             }
         });
 
@@ -186,13 +186,13 @@ public class ListaElementos extends javax.swing.JFrame {
                         .addComponent(salir))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(datosAlumnoProfesor)
-                            .addComponent(listaAlumnos)
                             .addComponent(notasAlumno)
-                            .addComponent(titulosProfesor)
                             .addComponent(listaAsignaturas)
-                            .addComponent(listaRecDigital))
-                        .addGap(0, 102, Short.MAX_VALUE)))
+                            .addComponent(listaRecDigital)
+                            .addComponent(datosAlumnos)
+                            .addComponent(titulosProfesor)
+                            .addComponent(datosProfesor))
+                        .addGap(0, 238, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -203,11 +203,11 @@ public class ListaElementos extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(salir))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(datosAlumnoProfesor)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(listaAlumnos)
+                .addComponent(datosAlumnos)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(notasAlumno)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(datosProfesor)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(titulosProfesor)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -224,86 +224,35 @@ public class ListaElementos extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_exitMenuItemActionPerformed
 
-    private void datosAlumnoProfesorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_datosAlumnoProfesorActionPerformed
-        
-        System.out.println("\nDesea ver los datos de un alumno o de un profesor?: ");
-        System.out.println("1.- Alumno.");
-        System.out.println("2.- Profesor.\n");
+    private void datosProfesorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_datosProfesorActionPerformed
 
-        int x = 0;
-        try {
-            x = Integer.parseInt(lector.readLine());
-        } catch (IOException ex) {
-            Logger.getLogger(ListaElementos.class.getName()).log(Level.SEVERE, null, ex);
+        if(institucion.existenAsignaturas() == false){
+            System.out.println("No hay asignaturas registradas, por lo tanto, no existen profesores.\n");
         }
-        
-        while(x!=1 && x!=2){
-            System.out.println("\nVuelva a ingresar una opcion válida.");
-            System.out.println("\n1.- Alumno.");
-            System.out.println("2.- Profesor.\n");
+        else{
+            System.out.println("\nIngrese sigla de la asignatura que imparte el profesor: ");
+            String sigla = null;
             try {
-                x = Integer.parseInt(lector.readLine());
+                sigla = lector.readLine();
             } catch (IOException ex) {
                 Logger.getLogger(ListaElementos.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
 
-        if(x==1){
-            if (curso.existenAlumnos() == false){
-                System.out.println("\nNo hay alumnos registrados.\n");
-            }
-            else{
-                System.out.println("\nIngrese rut del alumno: ");
-                String rut = null;
-                try {
-                    rut = lector.readLine();
-                } catch (IOException ex) {
-                    Logger.getLogger(ListaElementos.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                
-                while (curso.buscarAlumno(rut) == null){
-                    System.out.println("Inténtelo nuevamente. Ingrese un rut válido.");
-                    try {
-                        rut = lector.readLine();
-                    } catch (IOException ex) {
-                        Logger.getLogger(ListaElementos.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
-                
-                Persona auxAlumno = new Alumno();
-                auxAlumno = curso.buscarAlumno(rut);
-                ((Alumno) auxAlumno).identidad();
-            }
-        }
-        
-        if(x==2){
-            if(curso.existenAsignaturas() == false){
-                System.out.println("No hay asignaturas registradas, por lo tanto, no existen profesores.\n");
-            }
-            else{
-                System.out.println("\nIngrese sigla de la asignatura que imparte el profesor: ");
-                String sigla = null;
+            while (institucion.buscarAsignatura(sigla) == null){
+                System.out.println("Inténtelo nuevamente. Ingrese una sigla válida. ");
                 try {
                     sigla = lector.readLine();
                 } catch (IOException ex) {
                     Logger.getLogger(ListaElementos.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                
-                while (curso.buscarAsignatura(sigla) == null){
-                    System.out.println("Inténtelo nuevamente. Ingrese una sigla válida. ");
-                    try {
-                        sigla = lector.readLine();
-                    } catch (IOException ex) {
-                        Logger.getLogger(ListaElementos.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
-                
-                Persona auxProfesor = new Profesor();
-                auxProfesor = curso.buscarAsignatura(sigla).getProfesor();
-                ((Profesor) auxProfesor).identidad();
             }
+
+            Persona auxProfesor = new Profesor();
+            auxProfesor = institucion.buscarAsignatura(sigla).getProfesor();
+            ((Profesor) auxProfesor).identidad();
         }
-    }//GEN-LAST:event_datosAlumnoProfesorActionPerformed
+        
+    }//GEN-LAST:event_datosProfesorActionPerformed
 
     private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
         System.exit(0);
@@ -311,41 +260,36 @@ public class ListaElementos extends javax.swing.JFrame {
 
     private void listaAsignaturasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaAsignaturasActionPerformed
         short a = 1;
-        curso.recorrerLista(a);
+        institucion.recorrerLista(a);
     }//GEN-LAST:event_listaAsignaturasActionPerformed
-
-    private void listaAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaAlumnosActionPerformed
-        
-        System.out.println("\nIngrese opcion para mostrar la lista de alumnos: ");
-        System.out.println("1.- Mostrar nombre y rut de alumnos.");
-        System.out.println("2.- Mostrar solo nombre de alumnos.\n");
-
-        int x = 0;
-        try {
-            x = Integer.parseInt(lector.readLine());
-        } catch (IOException ex) {
-            Logger.getLogger(ListaElementos.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        while (x != 1 && x != 2){
-            System.out.println("\nVuelva a ingresar una opcion válida.");
-            System.out.println("\n1.- Mostrar nombre y rut de alumnos.");
-            System.out.println("2.- Mostrar nombre de alumnos.\n");
-            try {
-                x = Integer.parseInt(lector.readLine());
-            } catch (IOException ex) {
-                Logger.getLogger(ListaElementos.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-
-        if (x == 1) curso.recorrerLista();
-        if (x == 2) curso.recorrerLista(x);
-        
-    }//GEN-LAST:event_listaAlumnosActionPerformed
 
     private void notasAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notasAlumnoActionPerformed
         
-        if (curso.existenAlumnos() == false){
+        if(institucion.existenAsignaturas()==false){
+            System.out.println("La institucion no posee asignaturas.\n");
+            return;
+        }
+        
+        System.out.println("\nIngrese la sigla de la Asignatura: ");
+        String siglaAsig = null;
+        try {
+            siglaAsig = lector.readLine();
+        } catch (IOException ex) {
+            Logger.getLogger(AgregarElementos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        while (institucion.buscarAsignatura(siglaAsig) == null){
+            System.out.println("Inténtelo nuevamente. Ingrese una sigla válida. ");
+            try {
+                siglaAsig = lector.readLine();
+            } catch (IOException ex) {
+                Logger.getLogger(AgregarElementos.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+        Asignatura asig = institucion.buscarAsignatura(siglaAsig);
+        
+        if (asig.existenAlumnos() == false){
             System.out.println("\nNo hay alumnos registrados, por lo tanto no existen notas.\n");
         }
         else{
@@ -357,7 +301,7 @@ public class ListaElementos extends javax.swing.JFrame {
                 Logger.getLogger(ListaElementos.class.getName()).log(Level.SEVERE, null, ex);
             }
             
-            while(curso.buscarAlumno(rut) == null){
+            while(asig.buscarAlumno(rut) == null){
                 System.out.println("Inténtelo nuevamente. Ingrese un rut válido: ");
                 try {
                     rut = lector.readLine();
@@ -366,13 +310,14 @@ public class ListaElementos extends javax.swing.JFrame {
                 }
             }
             
-            curso.buscarAlumno(rut).listar();
+            System.out.println("\nAsignatura: "+asig);
+            asig.buscarAlumno(rut).listar();
         }
     }//GEN-LAST:event_notasAlumnoActionPerformed
 
     private void titulosProfesorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_titulosProfesorActionPerformed
         
-        if (curso.existenAsignaturas() == false){
+        if (institucion.existenAsignaturas() == false){
             System.out.println("\nNo hay asignaturas registradas, por lo tanto no existen profesores.\n");
         }
         else{
@@ -384,7 +329,7 @@ public class ListaElementos extends javax.swing.JFrame {
                 Logger.getLogger(ListaElementos.class.getName()).log(Level.SEVERE, null, ex);
             }
             
-            while(curso.buscarAsignatura(sigla) == null){
+            while(institucion.buscarAsignatura(sigla) == null){
                 System.out.println("Inténtelo nuevamente. Ingrese una sigla válida: ");
                 try {
                     sigla = lector.readLine();
@@ -393,17 +338,17 @@ public class ListaElementos extends javax.swing.JFrame {
                 }
             }
             
-            if(curso.buscarAsignatura(sigla).getProfesor() == null){
+            if(institucion.buscarAsignatura(sigla).getProfesor() == null){
                 System.out.println("La asignatura no tiene asignado un profesor.\n");
             }else{
-                curso.buscarAsignatura(sigla).getProfesor().listar();
+                institucion.buscarAsignatura(sigla).getProfesor().listar();
             }
         }
     }//GEN-LAST:event_titulosProfesorActionPerformed
 
     private void listaRecDigitalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaRecDigitalActionPerformed
         
-        if (curso.existenAsignaturas() == false){
+        if (institucion.existenAsignaturas() == false){
             System.out.println("\nNo hay asignaturas registradas, por lo tanto, no existen recursos digitales.\n");
         }
         else{
@@ -415,7 +360,7 @@ public class ListaElementos extends javax.swing.JFrame {
                 Logger.getLogger(ListaElementos.class.getName()).log(Level.SEVERE, null, ex);
             }
             
-            while (curso.buscarAsignatura(sigla1) == null){
+            while (institucion.buscarAsignatura(sigla1) == null){
                 System.out.println("Inténtelo nuevamente. Ingrese una sigla válida: ");
                 try {
                     sigla1 = lector.readLine();
@@ -424,23 +369,52 @@ public class ListaElementos extends javax.swing.JFrame {
                 }
             }
             
-            curso.buscarAsignatura(sigla1).recorrerLista();
+            institucion.buscarAsignatura(sigla1).recorrerLista();
         }
     }//GEN-LAST:event_listaRecDigitalActionPerformed
+
+    private void datosAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_datosAlumnosActionPerformed
+        
+        if(institucion.existenAsignaturas()==false){
+            System.out.println("La institucion no posee asignaturas y por lo tanto no hay alumnos.\n");
+            return;
+        }
+        
+        System.out.println("\nIngrese la sigla de la Asignatura: ");
+        String siglaAsig = null;
+        try {
+            siglaAsig = lector.readLine();
+        } catch (IOException ex) {
+            Logger.getLogger(AgregarElementos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        while (institucion.buscarAsignatura(siglaAsig) == null){
+            System.out.println("Inténtelo nuevamente. Ingrese una sigla válida. ");
+            try {
+                siglaAsig = lector.readLine();
+            } catch (IOException ex) {
+                Logger.getLogger(AgregarElementos.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+        Asignatura asig = institucion.buscarAsignatura(siglaAsig);
+        asig.recorrerAlumnosAsig();
+        
+    }//GEN-LAST:event_datosAlumnosActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem aboutMenuItem;
     private javax.swing.JMenuItem contentsMenuItem;
     private javax.swing.JMenuItem copyMenuItem;
     private javax.swing.JMenuItem cutMenuItem;
-    private javax.swing.JButton datosAlumnoProfesor;
+    private javax.swing.JButton datosAlumnos;
+    private javax.swing.JButton datosProfesor;
     private javax.swing.JMenuItem deleteMenuItem;
     private javax.swing.JMenu editMenu;
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenu helpMenu;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JButton listaAlumnos;
     private javax.swing.JButton listaAsignaturas;
     private javax.swing.JButton listaRecDigital;
     private javax.swing.JMenuBar menuBar;

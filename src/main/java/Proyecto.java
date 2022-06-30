@@ -5,6 +5,7 @@ public class Proyecto {
 
         Menu menuPrincipal = new Menu();
         menuPrincipal.setVisible(true);
-
+        /* hola*/
+        
     }
 }

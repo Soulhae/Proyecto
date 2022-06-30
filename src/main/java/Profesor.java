@@ -53,5 +53,6 @@ public class Profesor extends Persona{
     
     public void agregarProfesion(String profesion){
         this.profesiones.add(profesion);
+        System.out.println("\nProfesion agregada correctamente.\n");
     }
 }

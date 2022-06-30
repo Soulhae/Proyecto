@@ -7,7 +7,7 @@ import java.util.logging.Logger;
 
 public class Menu extends javax.swing.JFrame {
     
-    private Curso curso;
+    private Institucion institucion;
     BufferedReader lector = new BufferedReader ( new InputStreamReader (System.in) );
         
     public Menu() {
@@ -18,7 +18,7 @@ public class Menu extends javax.swing.JFrame {
         setTitle("Menú");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.getContentPane().setBackground(Color.PINK);
-        this.curso  = new Curso();
+        this.institucion  = new Institucion();
     }
 
     /**
@@ -246,7 +246,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_exitMenuItemActionPerformed
 
     private void agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarActionPerformed
-        AgregarElementos agregar = new AgregarElementos(curso);
+        AgregarElementos agregar = new AgregarElementos(institucion);
         agregar.setVisible(true);
     }//GEN-LAST:event_agregarActionPerformed
 
@@ -255,23 +255,23 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_salirActionPerformed
 
     private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
-        EliminarElementos elim = new EliminarElementos(curso);
+        EliminarElementos elim = new EliminarElementos(institucion);
         elim.setVisible(true);
     }//GEN-LAST:event_eliminarActionPerformed
 
     private void modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarActionPerformed
-        ModificarElementos modif = new ModificarElementos(curso);
+        ModificarElementos modif = new ModificarElementos(institucion);
         modif.setVisible(true);
     }//GEN-LAST:event_modificarActionPerformed
 
     private void listaDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaDatosActionPerformed
-        ListaElementos listaElementos = new ListaElementos(curso);
+        ListaElementos listaElementos = new ListaElementos(institucion);
         listaElementos.setVisible(true);
     }//GEN-LAST:event_listaDatosActionPerformed
 
     private void buscarRecDigitalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarRecDigitalActionPerformed
         
-        if (curso.existenAsignaturas() == false){
+        if (institucion.existenAsignaturas() == false){
             System.out.println("\nNo hay asignaturas registradas, por lo tanto, no existen recursos digitales.\n");
         }
         else{
@@ -283,7 +283,7 @@ public class Menu extends javax.swing.JFrame {
                 Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-            while (curso.buscarAsignatura(sigla2) == null){
+            while (institucion.buscarAsignatura(sigla2) == null){
                 System.out.println("Inténtelo nuevamente. Ingrese una sigla válida. ");
                 try {
                     sigla2 = lector.readLine();
@@ -292,7 +292,7 @@ public class Menu extends javax.swing.JFrame {
                 }
             }
 
-            Asignatura auxAsignatura = curso.buscarAsignatura(sigla2);
+            Asignatura auxAsignatura = institucion.buscarAsignatura(sigla2);
             System.out.println("Ingrese el nombre del Recurso Digital: ");
 
             String buscarRecDig = null;
@@ -314,28 +314,11 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_buscarRecDigitalActionPerformed
 
     private void alumnoPromedioBajoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alumnoPromedioBajoActionPerformed
-        
-        Persona seleccionarAlumno = new Alumno(); /* Alumno con el promedio mas bajo */
-        double promedioCursoBajo = 8;
-        seleccionarAlumno = ((Alumno) curso.obtenerAlumnoBajo());
-        promedioCursoBajo = ( (Alumno) seleccionarAlumno).obtenerPromedio();
-        
-        if (promedioCursoBajo == 8.0){
-            System.out.println("\nNo hay notas registradas.\n");
-        }
-        else{
-            System.out.println("\nEl alumno con el promedio más bajo ("+promedioCursoBajo+") es: "+ seleccionarAlumno.getNombre() +" - "+ seleccionarAlumno.getRut()+"\n");
-        }
-        
+        institucion.obtenerAlumnoBajoAsig();
     }//GEN-LAST:event_alumnoPromedioBajoActionPerformed
 
     private void alumnosPromedioAzulActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alumnosPromedioAzulActionPerformed
-        System.out.println("\nLista de Alumnos con promedio entre 4.0 y 7.0");
-        boolean aux;
-        int cont = 0;
-        aux = curso.notaRango();
-        if (aux == false) cont ++;
-        if (cont == 0) System.out.println("\nNo hay notas registradas.\n");
+        institucion.notaRangoAsig();
     }//GEN-LAST:event_alumnosPromedioAzulActionPerformed
 
     private void generarTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generarTxtActionPerformed
@@ -344,7 +327,7 @@ public class Menu extends javax.swing.JFrame {
         System.out.println("..........................");
         System.out.println("----GENERANDO ASIGNATURAS----");
         System.out.println("..........................");
-        curso.generarTXT();
+        institucion.generarTXT();
         System.out.println("----GENERANDO RECURSOS DIGITALES");
         System.out.println("..........................");
         System.out.println("Archivo generado con exito, revise la carpeta del programa para encontrarlo y poder leelo, muchas gracias");

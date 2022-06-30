@@ -8,19 +8,19 @@ import javax.swing.WindowConstants;
 
 public class EliminarElementos extends javax.swing.JFrame {
 
-    private Curso curso;
+    private Institucion institucion;
     BufferedReader lector = new BufferedReader ( new InputStreamReader (System.in) );
     
-    public EliminarElementos(Curso curso) {
+    public EliminarElementos(Institucion institucion) {
         
         initComponents();
         
         /* Establecemos el tamaño de la ventana , la centramos, el título y terminar la ejecución del programa si la ventana se cierra. */
         setSize(500,500);
         setLocationRelativeTo(null);
-        setTitle("Agregar Elementos");
+        setTitle("Eliminar Elementos");
         this.getContentPane().setBackground(Color.PINK);
-        this.curso = curso;
+        this.institucion = institucion;
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         
     }
@@ -197,7 +197,31 @@ public class EliminarElementos extends javax.swing.JFrame {
 
     private void eliminarAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarAlumnoActionPerformed
 
-        if (curso.existenAlumnos() == false){
+        if(institucion.existenAsignaturas()==false){
+            System.out.println("La institucion no posee asignaturas y por lo tanto no hay alumnos para eliminar.\n");
+            return;
+        }
+        
+        System.out.println("\nIngrese la sigla de la Asignatura: ");
+        String siglaAsig = null;
+        try {
+            siglaAsig = lector.readLine();
+        } catch (IOException ex) {
+            Logger.getLogger(AgregarElementos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        while (institucion.buscarAsignatura(siglaAsig) == null){
+            System.out.println("Inténtelo nuevamente. Ingrese una sigla válida. ");
+            try {
+                siglaAsig = lector.readLine();
+            } catch (IOException ex) {
+                Logger.getLogger(AgregarElementos.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+        Asignatura asig = institucion.buscarAsignatura(siglaAsig);
+        
+        if (asig.existenAlumnos() == false){
             System.out.println("\nNo hay alumnos registrados.\n");
         }
         else{
@@ -208,14 +232,14 @@ public class EliminarElementos extends javax.swing.JFrame {
             } catch (IOException ex) {
                 Logger.getLogger(EliminarElementos.class.getName()).log(Level.SEVERE, null, ex);
             }
-            curso.eliminarDato(rut);
+            asig.eliminarDato(rut, 1);
         }
 
     }//GEN-LAST:event_eliminarAlumnoActionPerformed
 
     private void eliminarAsignaturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarAsignaturaActionPerformed
-        if (curso.existenAsignaturas() == false){
-            System.out.println("\nNo hay asignaturas registrados.\n");
+        if (institucion.existenAsignaturas() == false){
+            System.out.println("\nNo hay asignaturas registradas.\n");
         }
         else{
             System.out.println("Ingrese sigla de la asignatura");
@@ -225,13 +249,13 @@ public class EliminarElementos extends javax.swing.JFrame {
             } catch (IOException ex) {
                 Logger.getLogger(EliminarElementos.class.getName()).log(Level.SEVERE, null, ex);
             }
-            curso.eliminarDato(sigla,1);
+            institucion.eliminarDato(sigla, 1);
         }
     }//GEN-LAST:event_eliminarAsignaturaActionPerformed
 
     private void eliminarRecDigitalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarRecDigitalActionPerformed
         
-        if (curso.existenAsignaturas() == false){
+        if (institucion.existenAsignaturas() == false){
             System.out.println("\nNo hay asignaturas registradas, por lo tanto, no existen recursos digitales.\n");
         }
         else{
@@ -244,7 +268,7 @@ public class EliminarElementos extends javax.swing.JFrame {
                 Logger.getLogger(EliminarElementos.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-            while (curso.buscarAsignatura(sigla) == null){
+            while (institucion.buscarAsignatura(sigla) == null){
                 System.out.println("Inténtelo nuevamente. Ingrese una sigla válida. ");
                 try {
                     sigla = lector.readLine();
@@ -253,7 +277,7 @@ public class EliminarElementos extends javax.swing.JFrame {
                 }
             }
 
-            auxAsignatura = curso.buscarAsignatura(sigla);
+            auxAsignatura = institucion.buscarAsignatura(sigla);
             System.out.println("Ingrese el nombre del Recurso Digital: ");
             String nombre = null;
             try {
