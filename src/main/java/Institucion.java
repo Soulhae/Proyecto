@@ -8,7 +8,10 @@ public class Institucion implements Imprimible{
         this.asignatura = new ArrayList<>();
     }
 
-    public void agregarAsignatura(Asignatura asignatura) {
+    public void agregarAsignatura(Asignatura asignatura) throws AsigRepetidaException {
+        if(this.buscarAsignatura(asignatura.getSigla())!=null){
+            throw new AsigRepetidaException();
+        }
         this.asignatura.add(asignatura);
     }
     

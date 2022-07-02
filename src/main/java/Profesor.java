@@ -51,7 +51,19 @@ public class Profesor extends Persona{
         System.out.println("\n");
     }
     
-    public void agregarProfesion(String profesion){
+    public boolean buscarProfesion(String profesion){
+        for(int i=0; i<profesiones.size(); i++){
+            if(profesiones.get(i).equals(profesion)){
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public void agregarProfesion(String profesion) throws ProfesionRepetidaException{
+        if(this.buscarProfesion(profesion)){
+            throw new ProfesionRepetidaException();
+        }
         this.profesiones.add(profesion);
         System.out.println("\nProfesion agregada correctamente.\n");
     }

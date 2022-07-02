@@ -316,12 +316,16 @@ public class AgregarElementos extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(AgregarElementos.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+               
         asignatura.setNombre(asig);
         asignatura.setSigla(sigla);
-
-        institucion.agregarAsignatura(asignatura);
-        System.out.println("\nAsignatura agregada.\n");
+        
+        try{
+            institucion.agregarAsignatura(asignatura);
+            System.out.println("\nAsignatura agregada.\n");
+        }catch(AsigRepetidaException a){
+            System.out.println(a.getMessage());
+        }
         
     }//GEN-LAST:event_ingresarAsignaturaActionPerformed
 
@@ -475,7 +479,11 @@ public class AgregarElementos extends javax.swing.JFrame {
             } catch (IOException ex) {
                 Logger.getLogger(AgregarElementos.class.getName()).log(Level.SEVERE, null, ex);
             }
-            institucion.buscarAsignatura(siglaAsig).getProfesor().agregarProfesion(titulo);
+            try{
+                institucion.buscarAsignatura(siglaAsig).getProfesor().agregarProfesion(titulo);
+            }catch(ProfesionRepetidaException as){
+                System.out.println(as.getMessage());
+            }
         }else{
             System.out.println("La asignatura no tiene asignado un profesor.\n");
         }
