@@ -322,15 +322,11 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_alumnosPromedioAzulActionPerformed
 
     private void generarTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generarTxtActionPerformed
-        System.out.println("Se creara un archivo .txt con la lista de los alumnos, las asignaturas y si en estas hay recursos digitales");
-        System.out.println("----GENERANDO ALUMNOS----");
-        System.out.println("..........................");
-        System.out.println("----GENERANDO ASIGNATURAS----");
-        System.out.println("..........................");
-        institucion.generarTXT();
-        System.out.println("----GENERANDO RECURSOS DIGITALES");
-        System.out.println("..........................");
-        System.out.println("Archivo generado con exito, revise la carpeta del programa para encontrarlo y poder leelo, muchas gracias");
+        try {
+            institucion.generarTXT();
+        } catch (IOException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_generarTxtActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

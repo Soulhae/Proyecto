@@ -347,7 +347,6 @@ public class AgregarElementos extends javax.swing.JFrame {
             Logger.getLogger(AgregarElementos.class.getName()).log(Level.SEVERE, null, ex);
         }
         while (institucion.buscarAsignatura(siglaAsig) == null){
-            /* if (siglaAsig.equals("Salir")) System.exit(0); Buscar una forma para pasar de la consola a la ventana */
             System.out.println("Inténtelo nuevamente. Ingrese una sigla válida. ");
             try {
                 siglaAsig = lector.readLine();
@@ -552,7 +551,7 @@ public class AgregarElementos extends javax.swing.JFrame {
         
         Asignatura asig = (Asignatura) institucion.buscarAsignatura(siglaAsig);
         asig.agregarAlumno(alumno);
-        System.out.println("\nAlumno registrado en la asignatura '"+asig+"'.\n"); // no imprime bien la asignatura
+        System.out.println("\nAlumno registrado en la asignatura '"+asig.getNombre()+"'.\n");
     }//GEN-LAST:event_ingresarAlumnoAsigActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -36,14 +36,6 @@ public class Asignatura implements Imprimible {
         this.profesor = (Profesor) profesor;
     }
     
-    public void escribirRecDigital (File archivo, FileWriter fw, BufferedWriter bw, PrintWriter wr) {
-        int i;
-        for(i=0; i<listRecDigital.size(); i++) {
-            wr.append(listRecDigital.get(i).getTipo()+" | "+listRecDigital.get(i).getNombre()+" \n");
-        }
-        wr.append("\n");
-    }
-    
     @Override
     public void eliminarDato(String nombre){
         /* eliminar de la lista */
@@ -57,7 +49,6 @@ public class Asignatura implements Imprimible {
         }
         /* Eliminar del mapa. */
         if (cont == 1){
-            //RecursoDigital aux = buscarMapaRecDigital(nombre);
             this.mapRecDigital.remove(nombre);
             cont ++;
         }
@@ -187,6 +178,46 @@ public class Asignatura implements Imprimible {
         cont ++;
         if (cont == listAlumnos.size()) return false;
         return true;
+    }
+    
+    public void escribirProfesor(File archivo, FileWriter fw, BufferedWriter bw, PrintWriter wr){
+        if(profesor == null){
+            wr.append("No hay profesor asignado.\n");
+        }
+        else{
+            wr.append("Profesor a cargo: "+profesor.getNombre()+"\n");
+            wr.append("Rut: "+profesor.getRut()+"\n");
+            wr.append("Edad: "+profesor.getEdad()+"\n");
+        }
+        wr.append("\n");
+    }
+    
+    public void escribirAlumnos(File archivo, FileWriter fw, BufferedWriter bw, PrintWriter wr){
+        if(listAlumnos.size() == 0){
+            wr.append("No hay alumnos registrados.\n");
+        }
+        else{
+            wr.append("- Lista de alumnos -\n");
+            for(  int i = 0 ; i < listAlumnos.size() ; i++){
+                wr.append("\nNombre: "+listAlumnos.get(i).getNombre()+"\n");
+                wr.append("Rut: "+listAlumnos.get(i).getRut()+"\n");
+                wr.append("Edad: "+listAlumnos.get(i).getEdad()+"\n\n");
+            }
+        }
+        wr.append("\n");
+    }
+    
+    public void escribirRecDigital(File archivo, FileWriter fw, BufferedWriter bw, PrintWriter wr){
+        if(listRecDigital.size() == 0){
+            wr.append("No hay recurso digitales registrados.\n");
+        }else{
+            wr.append("- Lista de Recursos Digitales -\n");
+            for( int i = 0 ; i < listRecDigital.size() ; i ++){
+                wr.append("\nNombre: "+listRecDigital.get(i).getNombre()+"\n");
+                wr.append("Tipo: "+listRecDigital.get(i).getTipo()+"\n\n");
+            }
+        }
+        wr.append("\n");
     }
     
     public String getNombre() {

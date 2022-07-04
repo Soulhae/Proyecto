@@ -103,48 +103,37 @@ public class Institucion implements Imprimible{
         else return true;
     }
     
-    public void generarTXT () {
-        File archivo;
-        FileWriter fw;
-        BufferedWriter bw;
-        PrintWriter wr;
+    public void generarTXT () throws IOException {
         
-        try {
-            archivo = new File ("Resultados.txt");
-            fw = new FileWriter (archivo);
-            bw = new BufferedWriter (fw);
-            wr = new PrintWriter (bw);
-            
-            wr.write("- Lista de Alumnos -\n");
-            wr.append("\n");
-            
-            /*int i;
-            for(i = 0; i<alumno.size(); i++) {
-                wr.append(alumno.get(i).getNombre()+" | "+alumno.get(i).getRut()+" \n");
-            }*/
-            
-            wr.append("\n");
-            wr.append("- Lista de Asignaturas -\n");
-            wr.append("\n");
-            
-            for (int i = 0; i<asignatura.size(); i++) {
-                wr.append(asignatura.get(i).getNombre()+" | "+asignatura.get(i).getSigla()+" \n");
+        if (asignatura.size() == 0){
+            System.out.println("Debe ingresar al menos una asignatura para generar el archivo.\n");
+        }
+        else{
+            try {
+                File archivo;
+                FileWriter fw;
+                BufferedWriter bw;
+                PrintWriter wr;
+
+                archivo = new File ("Datos.txt");
+                fw = new FileWriter (archivo);
+                bw = new BufferedWriter (fw);
+                wr = new PrintWriter (bw);
+
+                for (int i = 0 ; i < asignatura.size() ; i++){
+                    wr.append("\n--- Asignatura: '"+asignatura.get(i).getNombre()+"' ---\n\n");
+                    asignatura.get(i).escribirProfesor(archivo, fw, bw, wr);
+                    asignatura.get(i).escribirAlumnos(archivo, fw, bw, wr);
+                    asignatura.get(i).escribirRecDigital(archivo, fw, bw, wr);
+                }
+
+                wr.close();
+                bw.close();
+
+                System.out.println("Archivo '.txt' generado correctamente.\n");
+            } catch (NullPointerException e) {
+                System.out.println("El archivo no se genero correctamente.\n");
             }
-            
-            wr.append("\n");
-            wr.append("- Lista de Recursos Digitales -\n");
-            wr.append("\n");
-            
-            for (int i = 0; i<asignatura.size(); i++) {
-                wr.append(asignatura.get(i).getNombre()+" \n");
-                wr.append("\n");
-                asignatura.get(i).escribirRecDigital(archivo, fw, bw, wr);
-            }
-            
-            wr.close();
-            bw.close();
-        } catch (Exception e) {
-            System.out.println("Algo ha fallado");
         }
         
     }
